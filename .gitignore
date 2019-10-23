@@ -1,3 +1,4 @@
 # FILES TO BE IGNORED:
 data/
+visualization/
 __pycache__

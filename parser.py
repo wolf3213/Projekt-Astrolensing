@@ -1,17 +1,19 @@
 class Parser:
-    def __init__(self, filename, folder=False):
-        """ THIS CLASS IS USED TO READ FILES. "FILENAME" SHOULD 
-        BE INTERPRETED AS FILENAME, OR AS DIRECTORY NAME,
-        IF "FOLDER" IS SET TO TRUE """
-        pass
+    def __init__(self, filename, threshold=0.2, folder=False):
+        """ This class is used to read files. "filename" should 
+        be interpreted as filename, or as directory name,
+        if "folder" is set to true """
+
+        self.filename = filename
+        self.threshold = threshold
         
 
     def read_one_curve(self, filename):
-        """ METHOD RESPONSIBLE FOR READING DATA FROM SINGLE FILE.
-        'FILENAME' ARGUMENT IS JUST PATH TO FILE, NOTE THAT 
-        YOU SHOULD GIVE WHOLE PATH, F.EX. IF FILE IS 
-        IN 'DATA/_FILENAME_', YOU GIVE 'DATA/_FILENAME_ AS 
-        INPUT TO THIS METHOD """
+        """ Method responsible for reading data from single file.
+        'filename' argument is just path to file, note that 
+        you should give whole path, f.ex. If file is 
+        in 'data/_filename_', you should give 'data/_filename_' as 
+        input to this method """
 
         data = []
         with open(filename, 'r') as f:
