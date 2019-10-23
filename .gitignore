@@ -1,0 +1,3 @@
+# FILES TO BE IGNORED:
+data/
+__pycache__
