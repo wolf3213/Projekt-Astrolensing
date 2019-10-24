@@ -1,4 +1,5 @@
 # FILES TO BE IGNORED:
 data/
 visualization/
+curves/
 __pycache__
