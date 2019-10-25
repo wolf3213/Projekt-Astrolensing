@@ -1,7 +1,7 @@
 # Projekt-Astrolensing
 Important files with description:<br/>
 Main-obivous one<br/> 
-Curve-Ploting & Discarding Errors & Plotting<br/> 
+Curve-Storing Data & Discarding Errors & Plotting<br/> 
 Parser-Reading from file<br/> 
 Predictor- ?? not sure & mean for the discraded one<br/>
 
