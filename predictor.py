@@ -10,6 +10,7 @@ class Predictor:
 
     @staticmethod
     def predict_test(curve, std_thr = std_threshold, count_thr = count_threshold):
+        #pls add coment here 
         minimal_count = 1               
 
         discarded = curve.discard_n_sig(Predictor.width)
