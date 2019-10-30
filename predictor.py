@@ -44,7 +44,7 @@ class Predictor:
 
         return sum(times * weights) / sum(weights), sum(weights)
     
-    def Counterclose(curve,close_gap,minclose)
+    def Predicatorv2(curve)
 
         ''' Idea
         To be close means disctance beetween two times has to be smaller than close_gap.
@@ -56,12 +56,14 @@ class Predictor:
         minclose=3
         Supposed result
         How much=[5,4,1,1]
-        pos=3
-        '''
-        times = np.array([o[0] for o in discarded])times   = np.array([ o[0] for o in discarded ])
+        pos=3 '''
+       
+        times = np.array([o[0] for o in discarded])
         how_much=[] #array containg numbers of close elements in order
         k=0 #just a parametr
         pos=0
+        close_gap=1.1
+        minclose=8
         for i in times # i want iteriate over every element in times
             if(times[i]-times[i-1]=<close_gap)
                 k+=0
