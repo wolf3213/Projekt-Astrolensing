@@ -63,7 +63,7 @@ if __name__ == "__main__":
     test_parser = Parser("test")                                                # test object
     test_data = test_parser.read_one_curve(filename)                            # data from @filename file
     test_curve = Curve(test_data, filename[5:-4:], Predictor.error_threshold)   # test object containing whole data
-    Predictor.predict_test(test_curve)
+    Predictor.predict_test_v2(test_curve)
 
     params = f"{test_curve.some_value:.0}|{test_curve.time_mean:.1f}|{test_curve.time_std:.1f}|{test_curve.discarded_count}|{filename[:-4:]}"
     print(params)
