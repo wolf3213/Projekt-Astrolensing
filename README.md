@@ -3,7 +3,7 @@ Important files with description:<br/>
 Main-obivous one<br/> 
 Curve-Storing Data & Discarding Errors & Plotting<br/> 
 Parser-Reading from file<br/> 
-Predictor- ?? not sure & mean for the discraded one<br/>
+Predictor- Alg for saying if there was lens & mean for the discraded one<br/>
 
 TO DO LIST:<br/> 
 Improve Algortytm (Rafał has us explain this alg)<br/> 
