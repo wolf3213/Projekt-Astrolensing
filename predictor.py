@@ -11,7 +11,8 @@ class Predictor:
     @staticmethod
     def predict_test(curve, std_thr = std_threshold, count_thr = count_threshold):
         #pls add coment here 
-        minimal_count = 1               
+        minimal_count = 1   
+        std_min = 1            
 
         discarded = curve.discard_n_sig(Predictor.width)
         count = len(discarded)
@@ -28,7 +29,7 @@ class Predictor:
         curve.time_std  = times.std()
         curve.discarded_count = count
 
-        found = curve.time_std < std_thr and count > count_thr and curve.some_value > Predictor.value_threshold
+        found = curve.time_std > std_min and curve.time_std < std_thr and count > count_thr and curve.some_value > Predictor.value_threshold
         return found
 
 
@@ -44,7 +45,8 @@ class Predictor:
 
         return sum(times * weights) / sum(weights), sum(weights)
     
-    def predict_test_v2(curve)
+    @staticmethod
+    def predict_test_v2(curve):
 
         ''' Idea
         To be close means disctance beetween two times has to be smaller than close_gap.
@@ -58,21 +60,23 @@ class Predictor:
         How much=[5,4,1,1]
         pos=3 '''
        
-        times = np.array([o[0] for o in discarded])
+        times = np.array([o[0] for o in curve.discarded])
         how_much=[] #array containg numbers of close elements in order
         k=0 #just a parametr
         pos=0
-        close_gap=1.1
-        minclose=8
-        for i in times # i want iteriate over every element in times
-            if(times[i]-times[i-1]=<close_gap)
+        close_gap=3
+        minclose=16
+        for i in range(1, len(times)): # i want iteriate over every element in times
+            if(times[i]-times[i-1] <= close_gap):
                 k+=1
-            else
+            else:
                 how_much.append(k)
                 k=0
-        for i in how_much   # i want iteriate over every element in how_much
-            if(how_much[i]>=minclose)
+        for i in range(len(how_much)):   # i want iteriate over every element in how_much
+            if(how_much[i] >= minclose):
                 pos+=1
 
-        if (pos >=1) return true #true means lens founded
-        else return false 
+        return pos >= 1
+
+        if (pos >=1): return True #true means lens founded
+        else: return False 

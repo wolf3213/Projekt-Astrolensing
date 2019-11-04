@@ -9,10 +9,11 @@ class Curve:
 
         self.name = name
 
-        filtered = self.filter_nines(data, threshold)
+        filtered = self.filter_nines(data)
         self.times  = np.array([ o[0] for o in filtered ])   # array of times, in julian days
         self.mags   = np.array([ o[1] for o in filtered ])   # array of magnitudos, in mag
         self.errors = np.array([ o[2] for o in filtered ])   # array of measurement errors
+        self.discarded = []
         self.dist_from_mean = np.zeros(len(self.mags))
         self.count = len(filtered)
         self.discarded_mag_mean_value = 0
@@ -36,10 +37,10 @@ class Curve:
 
         self.data = filtered
         
-        self.filter_large_errors(threshold)
+        #self.filter_large_errors(threshold)
 
 
-    def filter_nines(self, data, error_threshold):
+    def filter_nines(self, data, error_threshold = 1):
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -47,7 +48,7 @@ class Curve:
 
         result = []
         for entry in data:
-            if not entry[1] > 99:
+            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475):
                 result.append(entry)
 
         return result
@@ -82,6 +83,7 @@ class Curve:
 
         self.discarded_mag_mean_value = _sum/(len(discarded)+1)
 
+        self.discarded = discarded
         return np.array(discarded)
 
 
@@ -121,7 +123,9 @@ class Curve:
         if t_max == 0: t_max = self.times[-1]
 
         height = self.mag_min 
-        pl.plot(self.times, self.mags, 'o', markersize=0.4)
+        pl.plot(self.times, self.mags, 'o', markersize=0.7)
+        pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', elinewidth=0.4, ms=1, zorder=1)
+
 
         if mean:
             pl.hlines(self.mag_mean, t_min, t_max, \
