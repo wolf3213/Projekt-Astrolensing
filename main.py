@@ -27,7 +27,6 @@ def plot_all_curves():
         data = parser.read_one_curve(folder+filename)
         curve = Curve(data, filename[5:-4:], Predictor.error_threshold)
 
-        #Predictor.predict_test(curve, Predictor.std_threshold, Predictor.count_threshold)
         if Predictor.predict_test(curve, Predictor.std_threshold, Predictor.count_threshold):
         #if Predictor.predict_test_v2(curve):
             params = f"{curve.some_value:.0}|{curve.time_mean:.1f}|{curve.time_std:.1f}|{curve.discarded_count}|{filename[:-4:]}"

@@ -37,7 +37,7 @@ class Curve:
 
         self.data = filtered
         
-        #self.filter_large_errors(threshold)
+        self.filter_large_errors(threshold)
 
 
     def filter_nines(self, data, error_threshold = 1):
