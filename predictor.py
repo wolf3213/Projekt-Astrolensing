@@ -44,7 +44,7 @@ class Predictor:
 
         return sum(times * weights) / sum(weights), sum(weights)
     
-    def predict_test_v2(curve)
+    def predict_test_v2(discarded)
 
         ''' Idea
         To be close means disctance beetween two times has to be smaller than close_gap.
