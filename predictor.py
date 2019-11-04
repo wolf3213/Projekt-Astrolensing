@@ -62,7 +62,7 @@ class Predictor:
        
         times = np.array([o[0] for o in curve.discarded])
         how_much=[] #array containg numbers of close elements in order
-        k=0 #just a parametr
+        k=0 #just a variable
         pos=0
         close_gap=3
         minclose=16
@@ -75,8 +75,8 @@ class Predictor:
         for i in range(len(how_much)):   # i want iteriate over every element in how_much
             if(how_much[i] >= minclose):
                 pos+=1
-
+        #if(pos>=1): print(how_much)
         return pos >= 1
 
-        if (pos >=1): return True #true means lens founded
-        else: return False 
+        #if (pos >=1): return True #true means lens founded
+        # else: return False 
