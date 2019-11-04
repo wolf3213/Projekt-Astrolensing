@@ -66,7 +66,7 @@ class Predictor:
         minclose=8
         for i in times # i want iteriate over every element in times
             if(times[i]-times[i-1]=<close_gap)
-                k+=0
+                k+=1
             else
                 how_much.append(k)
                 k=0
