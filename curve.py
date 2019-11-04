@@ -36,7 +36,7 @@ class Curve:
 
         self.data = filtered
         
-        self.filter_large_errors(threshold)
+        #self.filter_large_errors(threshold)
 
 
     def filter_nines(self, data, error_threshold):
@@ -109,8 +109,7 @@ class Curve:
             self.mag_max = 0
             self.mag_min = 0
 
-        self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
-            
+        self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)     
 
 
     def plot(self, mean = True, errors = False, t_min = 0, t_max = 0, t_mean = None):

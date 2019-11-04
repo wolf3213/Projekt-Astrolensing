@@ -27,7 +27,7 @@ class Predictor:
         curve.time_std  = times.std()
         curve.discarded_count = count
 
-        found = curve.time_std < std_thr and count > count_thr and curve.some_value > Predictor.value_threshold
+        found = curve.time_std < std_thr and curve.some_value > Predictor.value_threshold
         return found
 
 
