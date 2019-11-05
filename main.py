@@ -14,7 +14,7 @@ def plot_curves(curves_directory, out_directory = "test_dir"):
     algorithm to filter out 'lenses' '''
 
     dir = f"batch_alg_std{Predictor.std_threshold}_count{Predictor.count_threshold}"
-    if dir != out_directory:
+    if out_directory != "test_dir":
         dir = out_directory
 
     if dir not in os.listdir("visualization"):
