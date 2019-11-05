@@ -124,7 +124,9 @@ class Curve:
 
         height = self.mag_min 
         pl.plot(self.times, self.mags, 'o', markersize=0.7)
-        pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', elinewidth=0.4, ms=1, zorder=1)
+
+        if errors:
+            pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', elinewidth=0.4, ms=1, zorder=1)
 
 
         if mean:
@@ -136,9 +138,9 @@ class Curve:
                 pl.hlines(self.mag_mean + self.mag_std * (-i), t_min, t_max, \
                         colors='y', linewidth=0.5 - i/10)
 
-        if errors:
-            pl.plot(self.times, self.errors + height, 'o', markersize=0.3, label='Errors')
-            pl.hlines(height, t_min, t_max, colors='r', linewidth=0.5, label='Zero error level')
+        #if errors:
+        #    pl.plot(self.times, self.errors + height, 'o', markersize=0.3, label='Errors')
+        #    pl.hlines(height, t_min, t_max, colors='r', linewidth=0.5, label='Zero error level')
 
         if t_mean is not None:
             pl.axvline(x=t_mean, color='r', linewidth='0.4', label='Predicted peak')
