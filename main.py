@@ -49,7 +49,7 @@ def plot_one_curve(filename):
     curve = Curve(data, filename[5:-4:], Predictor.error_threshold)   # object containing star's data
     Predictor.predict_test(curve)
 
-    curve.plot(t_mean=curve.time_mean)
+    curve.plot(t_mean=curve.time_mean, gauss=True)
 
     pl.show()
     pl.clf()
@@ -81,5 +81,5 @@ if __name__ == "__main__":
     directory = 'zadanie1/'
 
 
-    #plot_one_curve(filename)
-    plot_curves(directory)
+    plot_one_curve(filename)
+    #plot_curves(directory)

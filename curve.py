@@ -17,6 +17,7 @@ class Curve:
         self.dist_from_mean = np.zeros(len(self.mags))
         self.count = len(filtered)
         self.discarded_mag_mean_value = 0
+        self.discarded_max = 0
         self.time_mean = 0
         self.time_std = 0
         self.discarded_count = 0
@@ -74,17 +75,24 @@ class Curve:
         _sum = 0
 
         for entry in self.data:
-            div = entry[1] - self.mag_mean
+            dif = entry[1] - self.mag_mean
             
-            #if abs(div) > n * self.mag_std:
-            if div < -n * self.mag_std:
+            #if abs(dif) > n * self.mag_std:
+            if dif < -n * self.mag_std:
                 discarded.append(entry)
-                _sum += div
+                _sum += dif
 
         self.discarded_mag_mean_value = _sum/(len(discarded)+1)
+        self.discarded_max = min([e[1] for e in discarded])
+        print(self.discarded_max)
 
         self.discarded = discarded
         return np.array(discarded)
+
+
+    def gauss(self, x):
+        g = abs(self.discarded_max-self.mag_mean)*np.exp(-(x - self.time_mean)**2/2*self.mag_std**2)#/(self.mag_std*(2*np.pi)**0.5)
+        return self.mag_mean - g
 
 
     def update_data(self, data):
@@ -115,7 +123,7 @@ class Curve:
             
 
 
-    def plot(self, mean = True, errors = False, t_min = 0, t_max = 0, t_mean = None):
+    def plot(self, mean = True, errors = False, gauss = False, t_min = 0, t_max = 0, t_mean = None):
         ''' This method is responsible for plotting
             single curve. '''
 
@@ -137,6 +145,12 @@ class Curve:
                         colors='y', linewidth=0.5 - i/10)
                 pl.hlines(self.mag_mean + self.mag_std * (-i), t_min, t_max, \
                         colors='y', linewidth=0.5 - i/10)
+
+        
+        if gauss:
+            x = np.arange(self.times[0], self.times[-1], 0.1)
+            print(x)
+            pl.plot(x, self.gauss(x), linewidth=0.4)
 
         #if errors:
         #    pl.plot(self.times, self.errors + height, 'o', markersize=0.3, label='Errors')

@@ -2,7 +2,7 @@ import numpy as np
 
 class Predictor:
 
-    error_threshold = 0.1  
+    error_threshold = 0.1 
     std_threshold   = 200
     count_threshold = 5
     width           = 3
