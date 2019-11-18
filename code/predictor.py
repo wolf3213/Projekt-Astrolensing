@@ -3,33 +3,42 @@ import numpy as np
 class Predictor:
 
     error_threshold = 0.1 
-    std_threshold   = 200
+    std_threshold   = 30
     count_threshold = 5
     width           = 3
-    value_threshold = 10**3
 
     @staticmethod
-    def predict_test(curve, std_thr = std_threshold, count_thr = count_threshold):
-        #pls add coment here 
+    def starboy(curve, time_std_thr = std_threshold, count_thr = count_threshold):
+        ''' Algorithm proposed by Rafał.
+            How it works:
+            -calculate mean magnitudo, magnitudo standard devaition
+            -discard points which are widht*mag_std away from mean magnitudo
+            -calculate (weighted) mean time of points which were discarded 
+            -calculate time standard deviation (dispersion of discarded points, time-wise)
+            -compare calculated values with thresholds:
+                ~time_std_min is minimal time dispersion, prevents from returning predicting
+                 too fast curve (1-2 days, we know lenses are wider)
+                ~time_std_thr is maximal time dispersion, we know lenses are not wider 
+                 than about 100-200 days
+                ~count_thr is number of discarded points, we want curves that have
+                 at least over a dozen points '''
+
         minimal_count = 1   
-        std_min = 1            
+        time_std_min = 1            
 
         discarded = curve.discard_n_sig(Predictor.width)
         count = len(discarded)
 
         if count <= minimal_count: return False        # prevents from calculating mean over empty set
 
-
-        times   = np.array([ o[0] for o in discarded ])
-        #mags   = np.array([ o[1] for o in discarded ])   
-        #errors = np.array([ o[2] for o in discarded ])
-
-        time_mean = times.mean()
-        curve.time_mean, curve.some_value = Predictor.calculate_weighted_time_mean(curve, discarded)
-        curve.time_std  = times.std()
+        curve.time_mean = Predictor.calculate_weighted_time_mean(curve, discarded)
+        curve.time_std  = discarded[:, 0].std()
         curve.discarded_count = count
 
-        found = curve.time_std > std_min and curve.time_std < std_thr and count > count_thr and curve.some_value > Predictor.value_threshold
+        found = curve.time_std > time_std_min and \
+                curve.time_std < time_std_thr and \
+                count > count_thr
+
         return found
 
 
@@ -37,18 +46,24 @@ class Predictor:
     def calculate_weighted_time_mean(curve, discarded):
         ''' Calculates mean time for discarded points, but with
             weights. Weight is calculated by following formula:
-            w_i = (mag[i] - mag_mean)^2 / error[i]^2 '''
-        dist_from_mean = np.array([ curve.mag_mean - i[1] for i in discarded])
-        errors = discarded[:,2]/curve.mag_mean
-        weights = dist_from_mean**3 / errors**1
-        times = discarded[:,0]
+            w_i = (mag[i] - mag_mean)^n1 / error[i]^n2 '''
+        
+        n1 = 3
+        n2 = 1
 
-        return sum(times * weights) / sum(weights), sum(weights)
+        dist_from_mean = np.array([ curve.mag_mean - i[1] for i in discarded])
+        errors = discarded[:, 2]/curve.mag_mean
+        weights = dist_from_mean**n1 / errors**n2
+        times = discarded[:, 0]
+
+        return sum(times * weights) / sum(weights) 
     
+
     @staticmethod
     def predict_test_v2(curve):
-
-        ''' Idea
+        
+        ''' Algorithm proposed by Adam.
+        Idea
         To be close means disctance beetween two times has to be smaller than close_gap.
         Then number of close elements is contained in how_much set.
         It gives positive result when any element of how_much set is bigger than minclose.
