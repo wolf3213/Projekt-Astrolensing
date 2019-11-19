@@ -1,6 +1,7 @@
 #!/usr/bin/python3.7
 #from predictor import Predictor
 from utilities import *
+import os
 
 
 if __name__ == "__main__":
@@ -11,12 +12,14 @@ if __name__ == "__main__":
          \nNumber of discarded points threshold: {Predictor.count_threshold}\
          \nNumber of standard deviations to discard: {Predictor.width}")
 
-    filename = "zadanie1/blgXXX_X_i_80418.dat"
+    filename = "data/photBLG100.1.I.124027.dat" 
     directory = 'zadanie1/'
 
+    Tools.run_starboy_single(filename)
+    #Tools.run_starboy_batch(directory)
 
-    #Tools.run_starboy_single(filename)
-    Tools.run_starboy_batch(directory)
+    #for filename in os.listdir(directory):
+    #    Tools.run_starboy_single(directory+filename)
 
 
 

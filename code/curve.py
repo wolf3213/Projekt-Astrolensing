@@ -107,6 +107,16 @@ class Curve:
         g = abs(self.discarded_max-self.mag_mean)*np.exp(-(x - self.time_mean)**2/4*self.mag_std**2)#/(self.mag_std*(2*np.pi)**0.5)
         return self.mag_mean - g   
 
+    
+    def gauss_dif(self):
+        ''' Testing concept, will describe later (or not)
+            if idea won'r work (which is what's going to happen propably) '''
+
+        dif = (self.mags - self.gauss(self.times))**2/self.errors**2
+        print(sum(dif))
+
+        return dif
+
 
     def __repr__(self):
         return f"time_mean:{self.time_mean:.1f}|time_std:{self.time_std:.1f}|disc_count:{self.discarded_count}|name:{self.name}"

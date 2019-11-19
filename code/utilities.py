@@ -71,6 +71,8 @@ class Tools:
         predicted = Predictor.starboy(curve)
         print(predicted)
 
+        curve.gauss_dif()
+
         curve.plot(t_mean=curve.time_mean, gauss=True)
 
         pl.show()
