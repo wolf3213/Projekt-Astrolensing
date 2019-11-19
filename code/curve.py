@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as pl
 
+
 class Curve:
     def __init__(self, data, name, threshold=0.1):
         ''' This object is going to be basic data 
@@ -9,22 +10,31 @@ class Curve:
 
         self.name = name
 
-        filtered = self.filter_nines(data, threshold)
-        self.times  = np.array([ o[0] for o in filtered ])   # array of times, in julian days
-        self.mags   = np.array([ o[1] for o in filtered ])   # array of magnitudos, in mag
-        self.errors = np.array([ o[2] for o in filtered ])   # array of measurement errors
-        self.dist_from_mean = np.zeros(len(self.mags))
-        self.count = len(filtered)
+        filtered = self.filter_nines(data)
+        
+        self.update_data(filtered)
+        
+        self.filter_large_errors(threshold)
+
+
+    def update_data(self, data):
+        ''' This function updates object, should 
+            be used whenever some entries should be 
+            filtered, also used to initalize all 
+            neccesary fields. '''
+
+        self.times  = np.array([ o[0] for o in data ])
+        self.mags   = np.array([ o[1] for o in data ])
+        self.errors = np.array([ o[2] for o in data ])
+        self.data   = data
+        self.count  = len(data)
+
+        self.discarded                = []
         self.discarded_mag_mean_value = 0
-        self.time_mean = 0
-        self.time_std = 0
-        self.discarded_count = 0
-        self.mag_mean = 0
-        self.mag_weighted_mean = 0
-        self.mag_std = 0
-        self.mag_max = 0
-        self.mag_min = 0
-        self.some_value = 0
+        self.discarded_max            = 0
+        self.discarded_count          = 0
+        self.time_mean                = 0
+        self.time_std                 = 0
 
         if self.count != 0:
             self.mag_mean = self.mags.mean()
@@ -32,14 +42,17 @@ class Curve:
             self.mag_std = self.mags.std()
             self.mag_max = max(self.mags)
             self.mag_min = min(self.mags)
-            
+        else:
+            self.mag_mean           = 0
+            self.mag_weighted_mean  = 0
+            self.mag_std            = 0
+            self.mag_max            = 0
+            self.mag_min            = 0
 
-        self.data = filtered
-        
-        #self.filter_large_errors(threshold)
+        self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
 
 
-    def filter_nines(self, data, error_threshold):
+    def filter_nines(self, data, error_threshold = 1):
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -47,7 +60,7 @@ class Curve:
 
         result = []
         for entry in data:
-            if not entry[1] > 99:
+            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475):
                 result.append(entry)
 
         return result
@@ -73,54 +86,53 @@ class Curve:
         _sum = 0
 
         for entry in self.data:
-            div = entry[1] - self.mag_mean
+            dif = entry[1] - self.mag_mean
             
-            #if abs(div) > n * self.mag_std:
-            if div < -n * self.mag_std:
+            if dif < -n * self.mag_std:
                 discarded.append(entry)
-                _sum += div
+                _sum += dif
+
+        self.discarded = discarded
+        if len(discarded) == 0: return np.array([])
 
         self.discarded_mag_mean_value = _sum/(len(discarded)+1)
+        self.discarded_max = min([e[1] for e in discarded])
 
         return np.array(discarded)
 
 
-    def update_data(self, data):
-        ''' This function updates object, should 
-            be used whenever some entries should be 
-            filtered '''
+    def gauss(self, x):
+        ''' Only for some testing '''
 
-        self.times  = np.array([ o[0] for o in data ])
-        self.mags   = np.array([ o[1] for o in data ])
-        self.errors = np.array([ o[2] for o in data ])
-        self.data   = data
-        self.count  = len(data)
+        g = abs(self.discarded_max-self.mag_mean)*np.exp(-(x - self.time_mean)**2/4*self.mag_std**2)#/(self.mag_std*(2*np.pi)**0.5)
+        return self.mag_mean - g   
 
-        if self.count != 0:
-            self.mag_mean = self.mags.mean()
-            self.mag_weighted_mean = sum(self.mags/(self.errors**2))/sum(1/self.errors**2)
-            self.mag_std = self.mags.std()
-            self.mag_max = max(self.mags)
-            self.mag_min = min(self.mags)
-        else:
-            self.mean_mag = 0
-            self.mag_weighted_mean = 0
-            self.mag_std = 0
-            self.mag_max = 0
-            self.mag_min = 0
+    
+    def gauss_dif(self):
+        ''' Testing concept, will describe later (or not)
+            if idea won'r work (which is what's going to happen propably) '''
 
-        self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)     
+        dif = (self.mags - self.gauss(self.times))**2/self.errors**2
+        print(sum(dif))
+
+        return dif
 
 
-    def plot(self, mean = True, errors = False, t_min = 0, t_max = 0, t_mean = None):
+    def __repr__(self):
+        return f"time_mean:{self.time_mean:.1f}|time_std:{self.time_std:.1f}|disc_count:{self.discarded_count}|name:{self.name}"
+
+
+    def plot(self, mean = True, errors = False, gauss = False, t_min = 0, t_max = 0, t_mean = None):
         ''' This method is responsible for plotting
             single curve. '''
 
         if t_min == 0: t_min = self.times[0]
         if t_max == 0: t_max = self.times[-1]
 
-        height = self.mag_min 
-        pl.plot(self.times, self.mags, 'o', markersize=0.4)
+        pl.plot(self.times, self.mags, 'o', markersize=0.7)
+
+        if errors:
+            pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', elinewidth=0.4, ms=1, zorder=1)
 
         if mean:
             pl.hlines(self.mag_mean, t_min, t_max, \
@@ -130,10 +142,10 @@ class Curve:
                         colors='y', linewidth=0.5 - i/10)
                 pl.hlines(self.mag_mean + self.mag_std * (-i), t_min, t_max, \
                         colors='y', linewidth=0.5 - i/10)
-
-        if errors:
-            pl.plot(self.times, self.errors + height, 'o', markersize=0.3, label='Errors')
-            pl.hlines(height, t_min, t_max, colors='r', linewidth=0.5, label='Zero error level')
+        
+        if gauss:
+            x = np.arange(self.times[0], self.times[-1], 0.1)
+            pl.plot(x, self.gauss(x), linewidth=0.4)
 
         if t_mean is not None:
             pl.axvline(x=t_mean, color='r', linewidth='0.4', label='Predicted peak')
