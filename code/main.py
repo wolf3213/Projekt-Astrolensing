@@ -15,8 +15,8 @@ if __name__ == "__main__":
     filename = "data/photBLG100.1.I.124027.dat" 
     directory = 'zadanie1/'
 
-    Tools.run_starboy_single(filename)
-    #Tools.run_starboy_batch(directory)
+    #Tools.run_starboy_single(filename)
+    Tools.run_starboy_batch(directory)
 
     #for filename in os.listdir(directory):
     #    Tools.run_starboy_single(directory+filename)

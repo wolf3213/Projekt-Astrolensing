@@ -48,7 +48,8 @@ class Tools:
 
         for filename in os.listdir(curves_directory):                                    
             data = parser.read_one_curve(curves_directory+filename)
-            curve = Curve(data, filename[5:-4:], Predictor.error_threshold)
+            name = filename.split(".")[-2]
+            curve = Curve(data, name, Predictor.error_threshold)
         
             if Predictor.starboy(curve):
                 
@@ -67,7 +68,8 @@ class Tools:
 
         parser = Parser("test")                                           # parser object
         data = parser.read_one_curve(filename)                            # data from @filename file
-        curve = Curve(data, filename[9:-4:], Predictor.error_threshold)   # object containing star's data
+        name = filename.split(".")[-2]
+        curve = Curve(data, name, Predictor.error_threshold)   # object containing star's data
         predicted = Predictor.starboy(curve)
         print(predicted)
 
