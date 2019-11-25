@@ -9,5 +9,6 @@ TO DO LIST:<br/>
 Improve Algortytm (Rafał has us explain this alg)<br/> 
 Reading file in loop(done?)<br/> 
 Make a new better alg or improve old one.<br/>
+Test founded lenses in fit mulens </br> 
 TO DO LIST in long future:<br/> 
 Make a report in latex<br/>
