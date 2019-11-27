@@ -52,7 +52,7 @@ class Curve:
         self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
 
 
-    def filter_nines(self, data, error_threshold = 1):
+    def filter_nines(self, data, error_threshold = 1):#wgl co tu robi ten error threshhold? 
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -60,7 +60,7 @@ class Curve:
 
         result = []
         for entry in data:
-            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475):
+            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475 or entry[0]>2200):
                 result.append(entry)
 
         return result
