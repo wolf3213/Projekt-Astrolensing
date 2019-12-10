@@ -53,6 +53,7 @@ class Curve:
         self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
 
 
+<<<<<<< HEAD
     def fit(self):
         start_params = [self.time_mean, 0.5, self.time_std*3, 0.9, self.mag_mean]
         try:
@@ -81,6 +82,9 @@ class Curve:
 
 
     def filter_nines(self, data):
+=======
+    def filter_nines(self, data, error_threshold = 1):#wgl co tu robi ten error threshhold? 
+>>>>>>> b58b09a6c2162dfa926b538e0ae442bae22a9d17
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -88,7 +92,11 @@ class Curve:
 
         result = []
         for entry in data:
+<<<<<<< HEAD
             if not entry[1] > 99:
+=======
+            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475 or entry[0]>2200):
+>>>>>>> b58b09a6c2162dfa926b538e0ae442bae22a9d17
                 result.append(entry)
 
         return result
