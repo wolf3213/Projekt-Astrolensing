@@ -48,8 +48,8 @@ class Predictor:
             weights. Weight is calculated by following formula:
             w_i = (mag[i] - mag_mean)^n1 / error[i]^n2 '''
         
-        n1 = 3
-        n2 = 1
+        n1 = 2
+        n2 = 2
 
         dist_from_mean = np.array([ curve.mag_mean - i[1] for i in discarded])
         errors = discarded[:, 2]/curve.mag_mean

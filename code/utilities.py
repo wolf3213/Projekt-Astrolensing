@@ -48,13 +48,23 @@ class Tools:
 
         for filename in os.listdir(curves_directory):                                    
             data = parser.read_one_curve(curves_directory+filename)
-            name = filename.split(".")[-2]
+            name = filename.split(".")[-2].split("_")[-1]
             curve = Curve(data, name, Predictor.error_threshold)
+            curve.cut_points([0, 2137], [2450, 2500])
         
+
             if Predictor.starboy(curve):
                 
+                p = curve.fit()
+
                 curve.plot(t_mean = curve.time_mean)                    # plots curve, saves to file in visualization/dir/
                 pl.savefig(f"visualization/{dir}/{curve.name}.png") 
+                pl.clf()
+
+                curve.plot(t_mean = curve.time_mean, t_std=True, only_lens=True)                    # plots curve, saves to file in visualization/dir/
+                x = np.arange(curve.times[0], curve.times[-1], 0.1)
+                pl.plot(x, Curve.paczynski(x, p[0], p[1], p[2], p[3], p[4]), label="Fitted Paczyński's curve")
+                pl.savefig(f"curves/{dir}/{curve.name}.png") 
                 pl.clf()
 
                 print(curve)
@@ -68,14 +78,18 @@ class Tools:
 
         parser = Parser("test")                                           # parser object
         data = parser.read_one_curve(filename)                            # data from @filename file
-        name = filename.split(".")[-2]
-        curve = Curve(data, name, Predictor.error_threshold)   # object containing star's data
+        name = filename.split(".")[-2].split('_')[-1]
+        curve = Curve(data, name, Predictor.error_threshold)              # object containing star's data
+        curve.cut_points([0, 2137], [2450, 2500])
         predicted = Predictor.starboy(curve)
         print(predicted)
+        p = curve.fit()
+        print(p)
+        x = np.arange(curve.times[0], curve.times[-1], 0.1)
+        pl.plot(x, Curve.paczynski(x, p[0], p[1], p[2], p[3], p[4]), color='orange', label="Fitted Paczyński's curve")
 
-        curve.gauss_dif()
+        curve.plot(t_mean=curve.time_mean, t_std=True, only_lens=False)
 
-        curve.plot(t_mean=curve.time_mean, gauss=True)
-
+        print(curve)
         pl.show()
         pl.clf()

@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as pl
+from scipy.optimize import curve_fit
 
 
 class Curve:
@@ -52,7 +53,34 @@ class Curve:
         self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
 
 
-    def filter_nines(self, data, error_threshold = 1):
+    def fit(self):
+        start_params = [self.time_mean, 0.5, self.time_std*3, 0.9, self.mag_mean]
+        try:
+            params, pcov = curve_fit(Curve.paczynski, self.times, self.mags, p0=start_params)
+        except RuntimeError:
+            params = start_params
+        return params
+
+
+    def cut_points(self, *args):
+        ''' opis
+            '''
+
+        result = []
+        for entry in self.data:
+            control = False
+            for r in args:
+                if (entry[0] > r[0] and entry[0] < r[1]):
+                    control = True
+                    
+            if not control:
+                result.append(entry)
+
+        self.update_data(result)
+        return result
+
+
+    def filter_nines(self, data):
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -60,7 +88,7 @@ class Curve:
 
         result = []
         for entry in data:
-            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475):
+            if not entry[1] > 99:
                 result.append(entry)
 
         return result
@@ -101,6 +129,17 @@ class Curve:
         return np.array(discarded)
 
 
+    @staticmethod
+    def paczynski(t, t0, u0, te, fs, mb):
+        ''' opis 
+            '''
+
+        u = np.sqrt( ((t-t0)/te)**2 + u0 )
+        miu = (u**2 + 2) / (u * np.sqrt(u**2+4))
+        mag = mb - 2.5 * np.log10(fs * (miu-1) + 1)
+        return mag
+
+
     def gauss(self, x):
         ''' Only for some testing '''
 
@@ -122,17 +161,21 @@ class Curve:
         return f"time_mean:{self.time_mean:.1f}|time_std:{self.time_std:.1f}|disc_count:{self.discarded_count}|name:{self.name}"
 
 
-    def plot(self, mean = True, errors = False, gauss = False, t_min = 0, t_max = 0, t_mean = None):
+    def plot(self, mean = True, errors = False, gauss = False, only_lens = False, t_mean = None, t_std = False):
         ''' This method is responsible for plotting
             single curve. '''
 
-        if t_min == 0: t_min = self.times[0]
-        if t_max == 0: t_max = self.times[-1]
+        if not only_lens:
+            t_min = self.times[0]
+            t_max = self.times[-1]
+        else:
+            t_min = self.time_mean - 3*self.time_std - 75
+            t_max = self.time_mean + 3*self.time_std + 75
 
         pl.plot(self.times, self.mags, 'o', markersize=0.7)
 
         if errors:
-            pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', elinewidth=0.4, ms=1, zorder=1)
+            pl.errorbar(self.times, self.mags, yerr=self.errors, fmt='o', linewidth=0.4, ms=1, zorder=1)
 
         if mean:
             pl.hlines(self.mag_mean, t_min, t_max, \
@@ -149,7 +192,11 @@ class Curve:
 
         if t_mean is not None:
             pl.axvline(x=t_mean, color='r', linewidth='0.4', label='Predicted peak')
-        
+
+        if t_std:
+            pl.axvline(x=t_mean + 3*self.time_std, color='y', linewidth='0.4')
+            pl.axvline(x=t_mean - 3*self.time_std, color='y', linewidth='0.4')
+
         pl.xlabel("Time [days]")
         pl.ylabel("Intensitivity [mag]")
         pl.title(self.name)
