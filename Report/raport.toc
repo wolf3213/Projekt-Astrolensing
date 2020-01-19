@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Abstrakt}{3}{section.1}
+\contentsline {section}{\numberline {2}Wst\IeC {\k e}p}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Wst\IeC {\k e}p teoretyczny}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Projekt OGLE}{5}{subsection.2.2}
+\contentsline {section}{\numberline {3}Analiza danych}{5}{section.3}
+\contentsline {section}{\numberline {4}Rezultaty}{5}{section.4}
+\contentsline {section}{\numberline {5}Bibliografia}{5}{section.5}
