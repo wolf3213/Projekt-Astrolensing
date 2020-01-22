@@ -4,10 +4,16 @@
 \usepackage{graphicx}
 \usepackage[MeX]{polski}
 \usepackage[utf8]{inputenc}
-\author{Adam Gonstal	Kamil Kolasa	Rafał Kornel	Konrad Maliszewski	Anna Olechowska}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=20mm,
+ top=30mm,
+ }
+\author{Adam Gonstal, Kamil Kolasa, Rafał Kornel, Konrad Maliszewski, Anna Olechowska}
 \title{Poszukiwanie mikrosoczewek grawitacyjnych}
 \frenchspacing
-\newcommand{\ak}{\hspace{1.0cm}}
+\newcommand{\ak}{\hspace{0.7 cm}}
 \begin{document}
 \maketitle
 \newpage
@@ -17,7 +23,7 @@
 \ak Poniżej opisany projekt studencki polegał na analizie fragmentu danych z projektu OGLE III w celu znalezienia zjawisk mikrosoczewkowania grawitacyjnego.  Autorom zostały udostępnione dane z teleskopu w Las Campanas w Chile, dotyczące m.in. pomiarów jasności dla ok. $260$ tysięcy  gwiazd, zbieranych na przestrzeni ok. $6$ lat. W ramach projektu utworzony został algorytm analizujący dane dla każdej gwiazdy i zwracający wykresy zależności jasności od czasu dla tych gwiazd, które według algorytmu mogły dawać efekt soczewki. Około $x\%$ zwróconych gwiazd okazało się rzeczywistymi przypadkami mikrosoczewkowania grawitacyjnego. Ponadto, $y$ ze znalezionych przez algorytm soczewek nie zostały zidentyfikowane przez zespół projektu OGLE III.
 \section{Wstęp}
 \subsection{Wstęp teoretyczny}
-\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy znajdujące się w niej. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, ale w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig_1}. 
+\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy znajdujące się w niej. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig_1}. 
 
 \begin{figure}[h]
 \centering
@@ -64,6 +70,9 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 \flushleft
 \subsection{Projekt OGLE}
 
+\ak Projekt OGLE  tj. ,,Optical Gravitational Lensing Experiment'' jest projektem naukowym prowadzanym, przez Obserwatorium Astronomiczne Uniwersytetu Warszawskiego, w ramach którego m.in. wykonywane są pomiary jasności gwiazd, mające na celu poszukiwanie zjawisk mikrosoczewkowania. 
+
+\ak Dzięki uprzejmości prof. Szymona Kozłowskiego, dostaliśmy \bf{X} plików w, którym jest średnio \bf{Y} pomiarów jasności w przeciągu 6 lat. 
 \section{Analiza danych}
 
 \section{Rezultaty}
