@@ -1,0 +1,40 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[ESA/Hubble and NASA(2011)]{Horseshoe}
+ESA/Hubble and NASA.
+\newblock {A Horseshoe Einstein Ring from Hubble}.
+\newblock
+  \url{https://en.wikipedia.org/wiki/File:A_Horseshoe_Einstein_Ring_from_Hubble.JPG},
+  2011.
+\newblock [Online; accessed 21-December-2011].
+
+\bibitem[MesserWoland(2006)]{Lens}
+MesserWoland.
+\newblock {Dwa promienie}.
+\newblock
+  \url{https://pl.wikipedia.org/wiki/Soczewkowanie_grawitacyjne#/media/%Plik:Dwa_promienie.svg},
+  2006.
+\newblock [Online; accessed 20-September-2006].
+
+\bibitem[NASA and STScI(1990)]{Cross}
+ESA NASA and STScI.
+\newblock {Einstein Cross}.
+\newblock
+  \url{https://pl.wikipedia.org/wiki/Krzy%C5%BC_Einsteina#/media/Plik:Einstein_cross.jpg},
+  1990.
+\newblock [Online; accessed 13-September-1990].
+
+\bibitem[Skowron(2009)]{Skowron}
+Jan Skowron.
+\newblock Analiza niestandardowych zjawisk mikrosoczewkowania grawitacyjnego
+  gwiazd galaktyki, 2009.
+\newblock Rozprawa doktorska napisana w Obserwatorium Astronomicznym
+  Uniwersytetu Warszawskiego pod kierunkiem prof. dr. hab. Michała
+  Jaroszyńskiego.
+
+\end{thebibliography}
