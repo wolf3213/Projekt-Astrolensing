@@ -1,6 +1,8 @@
-\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}{section.1}% 
-\contentsline {subsection}{\numberline {1.1}Wst\IeC {\k e}p teoretyczny}{3}{subsection.1.1}% 
-\contentsline {subsection}{\numberline {1.2}Projekt OGLE}{5}{subsection.1.2}% 
-\contentsline {section}{\numberline {2}Analiza danych}{5}{section.2}% 
-\contentsline {section}{\numberline {3}Rezultaty}{5}{section.3}% 
-\contentsline {section}{\numberline {4}Bibliografia}{5}{section.4}% 
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Wst\IeC {\k e}p teoretyczny}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Projekt OGLE}{5}{subsection.1.2}
+\contentsline {section}{\numberline {2}Analiza danych}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Og\IeC {\'o}lnie o programie}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Opis algorytmu}{5}{subsection.2.2}
+\contentsline {section}{\numberline {3}Rezultaty}{6}{section.3}
+\contentsline {section}{\numberline {4}Bibliografia}{6}{section.4}

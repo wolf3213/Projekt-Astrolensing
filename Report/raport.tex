@@ -85,9 +85,28 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 \ak Projekt OGLE  tj. ,,Optical Gravitational Lensing Experiment'' jest projektem naukowym prowadzonym w obserwatorium Las Campanas w Chile, przez Obserwatorium Astronomiczne Uniwersytetu Warszawskiego, w ramach którego m.in. wykonywane są pomiary jasności gwiazd, mające na celu poszukiwanie zjawisk mikrosoczewkowania. 
 
 \ak Projekt kierowany jest przez prof. Andrzeja Udalskiego, a jego zasadniczym obszarem obserwacji są rejony w pobliżu centrum naszej galaktyki. Od początku istnienia projektu (kwiecień 1992 roku) zaobserwowano: 20 nowych planet pozasłonecznych, ponad 4000 zjawisk mikrosoczewkowania oraz kilkaset tysięcy nowych gwiazd zmiennych\footnote{Dane ze strony internetowej projektu: \textit{http://www.astrouw.edu.pl/index.php/ogle-artykul}}. Projekt jest aktualnie (od marca 2010 roku) w czwartej fazie realizacji. Poprzednie fazy miały miejsce w latach: 1992-1995 (OGLE-I), 1997-2001 (OGLE-II), 2001-2009 (OGLE-III) i wiązały się ze stosowaniem innych detektorów.
-
-\ak Dane na których oparty jest nasz projekt studencki pochodzą z projektu OGLE-III i zawierają \bf{X} plików w, którym jest średnio \bf{Y} pomiarów jasności w przeciągu 6 lat. 
+ \\
+\textbf{Następny akapit może wrzucić do analizy danych?} 
+ \\
+\ak Dane na których oparty jest nasz projekt studencki pochodzą z projektu OGLE-III i zawierają \textbf{X} plików tekstowych w, którym jest średnio \textbf{Y} pomiarów jasności w przeciągu 6 lat. Warto wspomnieć tutaj że jakość część pomiarów jest daleka do ideału i musieliśmy posegregować dane czy się nadają do analizy, np. w części plików były pojawiały się tylko jasności gwiazd 99,9 magnitudo co oczywiście nie sama sensu.
 \section{Analiza danych}
+\subsection{Ogólnie o programie}
+\ak Do analizy danych napiliśmy program w języku Python. Dokładny kod znajduje się na naszym git hubie \textbf{[tu link]}. Składa się on z kilku części:
+\begin{enumerate}
+\item ,,Main'', czyli... 
+\item ...
+\end{enumerate} 
+\subsection{Opis algorytmu}
+\ak \textbf{...} Po wyfiltrowaniu wstępnie wszystkich potencjalnie nie nadającej się do obróbki danych tzw. ,,syfów'', program operując już na nowych nie odrzuconych danych oblicza ich parametry, takie jak \textbf{odchylenie standardowe od średniej dla pomiarów jasności tj.  $\sigma_{mag}$} i średnia pomiarów jasności tj. $m_0$. Następnie  sprawdzamy, które pomiary jasności, oznaczenie $m$, spełniają nierówność (tj. są jaśniejsze)
+\begin{equation}
+m<\sigma_{mag}\cdot A+m_0
+\end{equation}  i zliczamy je. Przy czym $A$ jest arbitralnie ustaloną liczbą dodatnią wybraną przez programistę. Następnie z tych punktów spełniających nierówność, liczymy odchylenie standardowe po czasie oznaczenie $\sigma_t$, oraz średni czas $t$ tych punktów.
+\\
+\ak Jeżeli, teraz nasz plik z danymi zawiera \textbf{{n}} spełniających nierówność (4) i jeżeli $\sigma_t$ jest mniejsze niż \textbf{T}, to program zwraca nam informacje o podejrzeniu że w tym pliku może być soczewka, wraz z wykresem pomiarów jasności, naniesionym czasem $t$. Czas ten informuje nas kiedy, według programu zachodzi soczewka.
+\\
+\ak Zasadniczą ideą, którą się posługujemy jest fakt, że nasze soczewki będą jaśniejsze niż ,,większość'' pomiarów, przy czym dokładna znaczenie słowa ,,większość'' jest ustalone, przez wybór wartości $A$, np. zakładając że pomiary jasności podlegają rozkładowi Gaussa, co w ogólności nie musi być prawdą np. dla gwiazd mocno zmiennych, dla wartości $A=1$ przewidujemy, że odrzucimy około $67\%+16,5\%=83,5\%$ punktów. 
+\\ 
+\ak Drugim faktem, który dla nas jest kluczowy jest to informacja, że mikro soczewki nie trwają dłużej niż 100-200 dni.
 
 \section{Rezultaty}
 \bibliography{bibliografia}
