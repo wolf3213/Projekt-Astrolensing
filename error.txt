@@ -1,0 +1,15 @@
+time_mean:3940.5|time_std:7.5|disc_count:6|name:97617
+Current lens index: 185000
+Chi squared: 168.7404489502639
+time_mean:4603.3|time_std:1.8|disc_count:6|name:16389
+Traceback (most recent call last):
+  File "code/main.py", line 26, in <module>
+    Tools.run_starboy_batch(directory, out_directory='further_testing')
+  File "/home/rafal/Projekt-Astrolensing/code/utilities.py", line 52, in run_starboy_batch
+    data = parser.read_one_curve(curves_directory+filename)
+  File "/home/rafal/Projekt-Astrolensing/code/parser.py", line 20, in read_one_curve
+    data = f.read().split("\n")                         # data array is filled with strings , ex: "3900.53154 18.997 0.167 11  0 A"
+  File "/usr/lib/python3.7/codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+

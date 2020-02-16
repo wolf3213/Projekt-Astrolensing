@@ -53,13 +53,13 @@ class Curve:
         self.dist_from_mean = self.mags - np.full(self.count, self.mag_mean)
 
 
-<<<<<<< HEAD
     def fit(self):
         start_params = [self.time_mean, 0.5, self.time_std*3, 0.9, self.mag_mean]
         try:
             params, pcov = curve_fit(Curve.paczynski, self.times, self.mags, p0=start_params)
         except RuntimeError:
             params = start_params
+        #print (pcov)
         return params
 
 
@@ -82,9 +82,6 @@ class Curve:
 
 
     def filter_nines(self, data):
-=======
-    def filter_nines(self, data, error_threshold = 1):#wgl co tu robi ten error threshhold? 
->>>>>>> b58b09a6c2162dfa926b538e0ae442bae22a9d17
         ''' Function removing entries that mag
             is higher than 99, which occurs alot, 
             also filters entries with high relative 
@@ -92,11 +89,7 @@ class Curve:
 
         result = []
         for entry in data:
-<<<<<<< HEAD
             if not entry[1] > 99:
-=======
-            if not entry[1] > 99 and (entry[0] < 2470 or entry[0] > 2475 or entry[0]>2200):
->>>>>>> b58b09a6c2162dfa926b538e0ae442bae22a9d17
                 result.append(entry)
 
         return result
@@ -155,14 +148,25 @@ class Curve:
         return self.mag_mean - g   
 
     
-    def gauss_dif(self):
+    def fit_dif(self, fit, *params, only_lens = False):
         ''' Testing concept, will describe later (or not)
             if idea won'r work (which is what's going to happen propably) '''
 
-        dif = (self.mags - self.gauss(self.times))**2/self.errors**2
-        print(sum(dif))
+        if not only_lens:
+            t_min = self.times[0]
+            t_max = self.times[-1]
+        else:
+            t_min = self.time_mean - 3*self.time_std
+            t_max = self.time_mean + 3*self.time_std
 
-        return dif
+        indices1 = self.times >= t_min
+        indices2 = self.times <= t_max
+
+        indices = indices1 & indices2
+
+        dif = (self.mags[indices] - fit(self.times[indices], *params))**2/self.errors[indices]**2
+
+        return np.sum(dif)/(len(indices)-5)
 
 
     def __repr__(self):

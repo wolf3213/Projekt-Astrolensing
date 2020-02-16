@@ -46,6 +46,8 @@ class Tools:
 
         parser = Parser("test")
 
+        count = 0
+
         for filename in os.listdir(curves_directory):                                    
             data = parser.read_one_curve(curves_directory+filename)
             name = filename.split(".")[-2].split("_")[-1]
@@ -61,13 +63,19 @@ class Tools:
                 pl.savefig(f"visualization/{dir}/{curve.name}.png") 
                 pl.clf()
 
+                chi_sq = curve.fit_dif(curve.paczynski, *p, only_lens=True)
+                print(f'Chi squared: {np.sum(chi_sq)}')
+
                 curve.plot(t_mean = curve.time_mean, t_std=True, only_lens=True)                    # plots curve, saves to file in visualization/dir/
                 x = np.arange(curve.times[0], curve.times[-1], 0.1)
                 pl.plot(x, Curve.paczynski(x, p[0], p[1], p[2], p[3], p[4]), label="Fitted Paczyński's curve")
-                pl.savefig(f"curves/{dir}/{curve.name}.png") 
+                pl.savefig(f"curves/{dir}/{curve.name}_{np.sum(chi_sq):.2f}_{p[0]:.2f}_{p[1]:.2f}_{p[2]:.2f}_{p[3]:.2f}_{p[4]:.2f}.png") 
                 pl.clf()
 
                 print(curve)
+                print()
+            if count % 5000 == 0: print(f"Current lens index: {count}")
+            count += 1
 
 
     @staticmethod
@@ -82,13 +90,18 @@ class Tools:
         curve = Curve(data, name, Predictor.error_threshold)              # object containing star's data
         curve.cut_points([0, 2137], [2450, 2500])
         predicted = Predictor.starboy(curve)
-        print(predicted)
+        print(f"Prediction, is this a lens?: {predicted}")
         p = curve.fit()
-        print(p)
+        print(f"Fitted parameters: {p}")
         x = np.arange(curve.times[0], curve.times[-1], 0.1)
         pl.plot(x, Curve.paczynski(x, p[0], p[1], p[2], p[3], p[4]), color='orange', label="Fitted Paczyński's curve")
 
         curve.plot(t_mean=curve.time_mean, t_std=True, only_lens=False)
+
+
+        chi_sq = curve.fit_dif(curve.paczynski, *p, only_lens=True)
+        print(f'Chi squared: {chi_sq}')
+
 
         print(curve)
         pl.show()

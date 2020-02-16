@@ -17,7 +17,12 @@ class Parser:
 
         data = []
         with open(filename, 'r') as f:
-            data = f.read().split("\n")                         # data array is filled with strings , ex: "3900.53154 18.997 0.167 11  0 A"
+            try:
+                data = f.read().split("\n")                         # data array is filled with strings , ex: "3900.53154 18.997 0.167 11  0 A"
+            except:
+                print(filename)
+                return [ (_, 0, 0) for _ in range(2418) ]
+                pass
             data = [ o.split() for o in data ]                  # converting strings to lists,        ex: ['3900.53154', '18.997', '0.167', '11', '0', 'A']
             data.pop()                                          # removes last, empty list from data array
 

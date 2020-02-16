@@ -1,0 +1,328 @@
+Relative error threshold: 0.1         
+Time standard deviation threshold: 30         
+Number of discarded points threshold: 5         
+Number of standard deviations to discard: 3
+Current lens index: 0
+Current lens index: 5000
+Chi squared: 0.18293770029052378
+time_mean:3819.6|time_std:6.1|disc_count:27|name:256646
+
+Chi squared: 0.1354155153143896
+time_mean:4330.6|time_std:1.2|disc_count:8|name:25044
+
+/home/rafal/Projekt-Astrolensing/code/curve.py:138: RuntimeWarning: invalid value encountered in sqrt
+  u = np.sqrt( ((t-t0)/te)**2 + u0 )
+/home/rafal/Projekt-Astrolensing/code/curve.py:140: RuntimeWarning: invalid value encountered in log10
+  mag = mb - 2.5 * np.log10(fs * (miu-1) + 1)
+Chi squared: 0.02570359023363425
+time_mean:3817.6|time_std:2.5|disc_count:6|name:113250
+
+Chi squared: 4.891159305208404
+time_mean:2793.1|time_std:18.6|disc_count:22|name:27155
+
+Current lens index: 10000
+Chi squared: 0.3048037007772449
+time_mean:3547.0|time_std:25.8|disc_count:12|name:86148
+
+Current lens index: 15000
+Chi squared: 0.6839277273833211
+time_mean:3945.9|time_std:21.4|disc_count:7|name:100150
+
+Chi squared: 0.49823784197142423
+time_mean:3227.5|time_std:17.1|disc_count:9|name:112175
+
+Current lens index: 20000
+Chi squared: 0.05139882319636641
+time_mean:3539.3|time_std:2.4|disc_count:30|name:17175
+
+Current lens index: 25000
+Chi squared: 0.3175779454934278
+time_mean:3548.9|time_std:17.8|disc_count:7|name:160228
+
+Current lens index: 30000
+Current lens index: 35000
+Chi squared: 0.7377078022601163
+time_mean:3940.1|time_std:26.2|disc_count:7|name:99808
+
+Chi squared: 0.2129516303310025
+time_mean:3532.3|time_std:14.4|disc_count:6|name:8357
+
+Current lens index: 40000
+Chi squared: 0.6346597700194144
+time_mean:3591.2|time_std:24.1|disc_count:9|name:77196
+
+Chi squared: 0.19927780007715787
+time_mean:3545.6|time_std:10.2|disc_count:13|name:16508
+
+Current lens index: 45000
+Current lens index: 50000
+Chi squared: 0.244725063908443
+time_mean:3539.8|time_std:20.8|disc_count:6|name:152120
+
+Current lens index: 55000
+Chi squared: 2.1933063113433358
+time_mean:4661.3|time_std:15.5|disc_count:9|name:134901
+
+Current lens index: 60000
+Chi squared: 0.23606746022549271
+time_mean:3552.8|time_std:15.9|disc_count:6|name:34589
+
+Chi squared: 0.5910851329854284
+time_mean:3935.3|time_std:11.3|disc_count:6|name:100109
+
+Current lens index: 65000
+Chi squared: 0.40402334800591744
+time_mean:3547.5|time_std:16.3|disc_count:6|name:223732
+
+Current lens index: 70000
+Chi squared: 4.052330618041459
+time_mean:3938.8|time_std:20.0|disc_count:6|name:103281
+
+Chi squared: 0.23923105559115246
+time_mean:3593.9|time_std:7.6|disc_count:7|name:231469
+
+Current lens index: 75000
+/home/rafal/.local/lib/python3.7/site-packages/scipy/optimize/minpack.py:795: OptimizeWarning: Covariance of the parameters could not be estimated
+  category=OptimizeWarning)
+Chi squared: 2.9292194288786226
+time_mean:3545.0|time_std:21.4|disc_count:13|name:160159
+
+Chi squared: 0.22121802805980767
+time_mean:3527.3|time_std:15.1|disc_count:6|name:86157
+
+Current lens index: 80000
+Chi squared: 1.8640712797709895
+time_mean:3936.0|time_std:14.3|disc_count:7|name:103287
+
+Chi squared: 0.02090962660743764
+time_mean:3470.1|time_std:5.0|disc_count:6|name:225488
+
+Current lens index: 85000
+Chi squared: 0.8124007323626169
+time_mean:3549.9|time_std:29.6|disc_count:10|name:77539
+
+Current lens index: 90000
+Current lens index: 95000
+Chi squared: 28.167059218845313
+time_mean:4558.8|time_std:20.4|disc_count:9|name:264801
+
+Chi squared: 1.370856419697532
+time_mean:3583.6|time_std:27.7|disc_count:6|name:71808
+
+Chi squared: 0.6330374862266588
+time_mean:3546.9|time_std:23.0|disc_count:6|name:216603
+
+Current lens index: 100000
+Chi squared: 0.3237052975667199
+time_mean:3538.7|time_std:17.9|disc_count:12|name:223745
+
+Chi squared: 1.4403079214769625
+time_mean:3935.6|time_std:15.0|disc_count:7|name:103080
+
+Current lens index: 105000
+Chi squared: 2.481486175348994
+time_mean:4214.8|time_std:2.3|disc_count:7|name:226054
+
+Current lens index: 110000
+Current lens index: 115000
+Current lens index: 120000
+Current lens index: 125000
+Chi squared: 0.29878799762651137
+time_mean:3570.0|time_std:24.7|disc_count:9|name:105267
+
+Current lens index: 130000
+Chi squared: 5.19007988429209
+time_mean:4321.2|time_std:11.8|disc_count:7|name:81466
+
+Current lens index: 135000
+Chi squared: 0.5575063003690365
+time_mean:3572.9|time_std:26.8|disc_count:15|name:216453
+
+Current lens index: 140000
+Chi squared: 0.4604920544776669
+time_mean:3538.1|time_std:24.2|disc_count:6|name:169733
+
+Chi squared: 0.22981389453562773
+time_mean:4575.4|time_std:1.5|disc_count:6|name:216428
+
+Chi squared: 0.10783668031739374
+time_mean:3886.3|time_std:2.4|disc_count:9|name:173020
+
+Current lens index: 145000
+Chi squared: 0.18377978562791478
+time_mean:3535.2|time_std:12.1|disc_count:8|name:223685
+
+Current lens index: 150000
+Chi squared: 0.12675614480363495
+time_mean:4674.2|time_std:1.4|disc_count:7|name:102617
+
+Chi squared: 0.04595109088714802
+time_mean:4295.2|time_std:6.7|disc_count:40|name:1086
+
+Current lens index: 155000
+Current lens index: 160000
+Chi squared: 2.1681401537213274
+time_mean:3838.5|time_std:20.2|disc_count:8|name:207700
+
+Current lens index: 165000
+Chi squared: 0.2190429384766321
+time_mean:4373.6|time_std:2.8|disc_count:6|name:207656
+
+Chi squared: 0.34094772652147115
+time_mean:3282.3|time_std:20.9|disc_count:6|name:71004
+
+Chi squared: 0.3093717676724697
+time_mean:2431.1|time_std:4.3|disc_count:6|name:223684
+
+Chi squared: 0.6135161453647647
+time_mean:3569.0|time_std:28.1|disc_count:8|name:144727
+
+Current lens index: 170000
+Chi squared: 0.6636112701841526
+time_mean:4674.0|time_std:1.3|disc_count:8|name:104661
+
+Chi squared: 1.4991856413889375
+time_mean:2793.2|time_std:12.9|disc_count:13|name:26174
+
+Chi squared: 0.02908762120481115
+time_mean:4308.7|time_std:6.6|disc_count:11|name:96034
+
+Chi squared: 1.944013286988086
+time_mean:4565.4|time_std:22.2|disc_count:13|name:274589
+
+Current lens index: 175000
+Chi squared: 0.7208486583188396
+time_mean:4702.0|time_std:18.8|disc_count:11|name:100764
+
+Chi squared: 0.6166489412761371
+time_mean:3576.9|time_std:22.5|disc_count:6|name:224520
+
+Current lens index: 180000
+Chi squared: 1.3243495023604626
+time_mean:3940.5|time_std:7.5|disc_count:6|name:97617
+
+Current lens index: 185000
+Chi squared: 0.11064947472148452
+time_mean:4603.3|time_std:1.8|disc_count:6|name:16389
+
+Current lens index: 190000
+Current lens index: 195000
+Chi squared: 7.697879918031007
+time_mean:4215.5|time_std:7.7|disc_count:23|name:226067
+
+Chi squared: 0.3118183763857129
+time_mean:4272.8|time_std:7.1|disc_count:6|name:60905
+
+Current lens index: 200000
+Chi squared: 0.01369555608773584
+time_mean:3121.6|time_std:6.9|disc_count:12|name:242645
+
+Chi squared: 0.7108097967690081
+time_mean:3532.4|time_std:22.4|disc_count:6|name:151980
+
+Chi squared: 1.2992715298964874
+time_mean:4878.2|time_std:12.8|disc_count:13|name:252766
+
+Chi squared: 0.011452159590754693
+time_mean:4311.2|time_std:3.9|disc_count:9|name:264129
+
+Current lens index: 205000
+Chi squared: 0.8237623832487242
+time_mean:3822.2|time_std:16.3|disc_count:6|name:25401
+
+Chi squared: 1.5173428596505487
+time_mean:4327.8|time_std:12.0|disc_count:6|name:85845
+
+Current lens index: 210000
+Chi squared: 1.4473158194285174
+time_mean:4215.0|time_std:6.8|disc_count:14|name:230606
+
+Chi squared: 0.07696295009192328
+time_mean:4215.9|time_std:7.1|disc_count:23|name:223983
+
+Chi squared: 3.3869175321342135
+time_mean:4889.7|time_std:13.3|disc_count:6|name:252804
+
+Current lens index: 215000
+Chi squared: 0.4401757781017509
+time_mean:3585.3|time_std:15.6|disc_count:11|name:223682
+
+Chi squared: 19.598216986544834
+time_mean:4381.7|time_std:3.0|disc_count:9|name:16427
+
+Current lens index: 220000
+Chi squared: 0.411487482639858
+time_mean:4700.2|time_std:20.3|disc_count:15|name:96788
+
+Current lens index: 225000
+Current lens index: 230000
+Chi squared: 0.4408853233689
+time_mean:3548.0|time_std:19.4|disc_count:6|name:86169
+
+Chi squared: 0.021232437739882804
+time_mean:3122.0|time_std:5.6|disc_count:8|name:245175
+
+Chi squared: 0.349616194629225
+time_mean:3287.0|time_std:25.8|disc_count:6|name:36952
+
+Current lens index: 235000
+Chi squared: 0.6242237366745896
+time_mean:2793.5|time_std:6.0|disc_count:7|name:33798
+
+Current lens index: 240000
+Chi squared: 0.2682399649043119
+time_mean:4919.2|time_std:24.2|disc_count:8|name:51647
+
+Chi squared: 0.34767565992803107
+time_mean:4673.7|time_std:1.3|disc_count:8|name:99526
+
+Current lens index: 245000
+Chi squared: 0.7633827266348981
+time_mean:3939.6|time_std:22.2|disc_count:9|name:100025
+
+Current lens index: 250000
+Chi squared: 4.363655728137018
+time_mean:4674.2|time_std:1.3|disc_count:8|name:99527
+
+Chi squared: 1.3030029959663088
+time_mean:3941.6|time_std:19.8|disc_count:10|name:103235
+
+Chi squared: 0.5974026584810995
+time_mean:3586.6|time_std:27.7|disc_count:7|name:95484
+
+Chi squared: 0.04692859790994817
+time_mean:3290.4|time_std:12.9|disc_count:8|name:67470
+
+Current lens index: 255000
+Chi squared: 1.2851032923306285
+time_mean:3583.8|time_std:3.9|disc_count:7|name:216397
+
+Chi squared: 0.013666760371342433
+time_mean:4311.7|time_std:3.4|disc_count:8|name:262121
+
+Chi squared: 9.524453077770824
+time_mean:3837.3|time_std:9.3|disc_count:6|name:104423
+
+Current lens index: 260000
+Chi squared: 0.04550881136571086
+time_mean:3432.5|time_std:14.8|disc_count:13|name:95950
+
+Chi squared: 0.4564831127417503
+time_mean:3530.4|time_std:24.7|disc_count:18|name:86061
+
+Chi squared: 0.6052146936007089
+time_mean:3539.5|time_std:22.3|disc_count:10|name:76927
+
+Current lens index: 265000
+Chi squared: 0.28831389895908915
+time_mean:4244.9|time_std:2.0|disc_count:16|name:264699
+
+Current lens index: 270000
+Current lens index: 275000
+Chi squared: 1.063757643234949
+time_mean:3937.3|time_std:19.7|disc_count:16|name:99844
+
+Current lens index: 280000
+Chi squared: 0.9081967450793894
+time_mean:3941.2|time_std:18.0|disc_count:9|name:103217
+
