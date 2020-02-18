@@ -1,11 +1,13 @@
-\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}{section.1}
-\contentsline {subsection}{\numberline {1.1}Wst\IeC {\k e}p teoretyczny}{3}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Projekt OGLE}{5}{subsection.1.2}
-\contentsline {section}{\numberline {2}Analiza danych}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Og\IeC {\'o}lnie o programie}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Odsiew ,,syf\IeC {\'o}w''}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Opis algorytmu}{5}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Problemy}{6}{subsection.2.4}
-\contentsline {section}{\numberline {3}Rezultaty}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Testy programu }{6}{subsection.3.1}
-\contentsline {section}{\numberline {4}Bibliografia}{6}{section.4}
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Wst\IeC {\k e}p teoretyczny}{3}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}Projekt OGLE}{4}{subsection.1.2}% 
+\contentsline {section}{\numberline {2}Analiza danych}{4}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Dane}{4}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Og\IeC {\'o}lnie o programie}{5}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Odsiew szumu}{5}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Opis algorytmu}{5}{subsection.2.4}% 
+\contentsline {subsection}{\numberline {2.5}Problemy}{6}{subsection.2.5}% 
+\contentsline {section}{\numberline {3}Testy programu}{6}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Znalezione soczewki}{6}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Wizualizacje}{6}{subsection.3.2}% 
+\contentsline {section}{\numberline {4}Bibliografia}{8}{section.4}% 
