@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.4)  18 FEB 2020 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.4)  18 FEB 2020 19:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -452,7 +452,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
 [3 <./Lens.jpeg> <./Horseshoe.jpeg> <./Cross.jpeg>]
 
-LaTeX Warning: Reference `Fig_997' on page 4 undefined on input line 75.
+Package caption Warning: \label without proper reference on input line 149.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `Fig_4' on page 4 undefined on input line 75.
 
 LaTeX Font Info:    External font `plex10' loaded for size
 (Font)              <9> on input line 87.
@@ -462,12 +466,12 @@ LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 94.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/polski/ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-<16389.png, id=135, 462.528pt x 346.896pt>
+<16389.png, id=137, 462.528pt x 346.896pt>
 File: 16389.png Graphic file (type png)
 <use 16389.png>
 Package pdftex.def Info: 16389.png  used on input line 126.
 (pdftex.def)             Requested size: 225.49031pt x 156.48814pt.
-<16389_v.png, id=136, 462.528pt x 346.896pt>
+<16389_v.png, id=138, 462.528pt x 346.896pt>
 File: 16389_v.png Graphic file (type png)
 <use 16389_v.png>
 Package pdftex.def Info: 16389_v.png  used on input line 132.
@@ -478,12 +482,12 @@ Overfull \hbox (11.97984pt too wide) in paragraph at lines 124--135
  []
 
 [5]
-<1086.png, id=149, 462.528pt x 346.896pt>
+<1086.png, id=151, 462.528pt x 346.896pt>
 File: 1086.png Graphic file (type png)
 <use 1086.png>
 Package pdftex.def Info: 1086.png  used on input line 148.
 (pdftex.def)             Requested size: 225.49031pt x 156.48814pt.
-<1086_v.png, id=150, 462.528pt x 346.896pt>
+<1086_v.png, id=152, 462.528pt x 346.896pt>
 File: 1086_v.png Graphic file (type png)
 <use 1086_v.png>
 Package pdftex.def Info: 1086_v.png  used on input line 153.
@@ -493,12 +497,12 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 146--156
 []$[]$ $[]$ 
  []
 
-<17175.png, id=151, 462.528pt x 346.896pt>
+<17175.png, id=153, 462.528pt x 346.896pt>
 File: 17175.png Graphic file (type png)
 <use 17175.png>
 Package pdftex.def Info: 17175.png  used on input line 161.
 (pdftex.def)             Requested size: 225.49031pt x 149.37408pt.
-<17175_v.png, id=152, 462.528pt x 346.896pt>
+<17175_v.png, id=154, 462.528pt x 346.896pt>
 File: 17175_v.png Graphic file (type png)
 <use 17175_v.png>
 Package pdftex.def Info: 17175_v.png  used on input line 166.
@@ -509,12 +513,12 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 159--169
  []
 
 [6 <./16389.png> <./16389_v.png>]
-<27155.png, id=161, 462.528pt x 346.896pt>
+<27155.png, id=163, 462.528pt x 346.896pt>
 File: 27155.png Graphic file (type png)
 <use 27155.png>
 Package pdftex.def Info: 27155.png  used on input line 174.
 (pdftex.def)             Requested size: 225.49031pt x 149.37408pt.
-<27155_v.png, id=162, 462.528pt x 346.896pt>
+<27155_v.png, id=164, 462.528pt x 346.896pt>
 File: 27155_v.png Graphic file (type png)
 <use 27155_v.png>
 Package pdftex.def Info: 27155_v.png  used on input line 179.
@@ -524,12 +528,12 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 172--182
 []$[]$ $[]$ 
  []
 
-<226067.png, id=163, 462.528pt x 346.896pt>
+<226067.png, id=165, 462.528pt x 346.896pt>
 File: 226067.png Graphic file (type png)
 <use 226067.png>
 Package pdftex.def Info: 226067.png  used on input line 187.
 (pdftex.def)             Requested size: 225.49031pt x 149.37408pt.
-<226067_v.png, id=164, 462.528pt x 346.896pt>
+<226067_v.png, id=166, 462.528pt x 346.896pt>
 File: 226067_v.png Graphic file (type png)
 <use 226067_v.png>
 Package pdftex.def Info: 226067_v.png  used on input line 192.
@@ -556,10 +560,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 199.
  ) 
 Here is how much of TeX's memory you used:
- 7504 strings out of 492616
- 113792 string characters out of 6129482
+ 7503 strings out of 492616
+ 113783 string characters out of 6129482
  214027 words of memory out of 5000000
- 11273 multiletter control sequences out of 15000+600000
+ 11272 multiletter control sequences out of 15000+600000
  18081 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,8n,43p,949b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -580,10 +584,10 @@ exmf-dist/fonts/type1/public/pl/plr8.pfb></usr/local/texlive/2019/texmf-dist/fo
 nts/type1/public/pl/plr9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
 blic/pl/plsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/pl/pl
 ti9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/pl/pltt10.pfb>
-Output written on raport.pdf (8 pages, 490727 bytes).
+Output written on raport.pdf (8 pages, 490937 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 200 compressed objects within 2 object streams
+ 258 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
  45 named destinations out of 1000 (max. 500000)
  170 words of extra memory for PDF output out of 10000 (max. 10000000)
 

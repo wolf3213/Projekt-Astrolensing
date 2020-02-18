@@ -33,7 +33,7 @@
 \newpage
 \section{Wstęp}
 \subsection{Wstęp teoretyczny}
-\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy znajdujące się w niej. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig1}. 
+\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy się w niej znajdujące. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig1}. 
 
 \begin{figure}[H]
 \centering
@@ -66,13 +66,13 @@
 \label{Eq_1}
 \end{equation}
 \flushleft
-\ak Wzmocnienie można również dobrze opisać za pomocą odległości $u$ źródła światła od soczewki, którą można opisać za pomocą kilku parametrów, które dla danej soczewki można przyjąć jako stałe w trakcie trwania zjawiska. Wspomniane parametry geometryczne mają wpływ na $t_{E}$, tj. czas Einsteina. Wielkość $b$ jest wielkością analogiczną do parametru zderzenia i także jest stała. Czas $t_{0}$ jest momentem największego wzmocnienia, z kolei jedyną zmienną we wzorze \ref{Eq_2} jest czas {t}.
+\ak Wzmocnienie można również dobrze opisać za pomocą odległości $u$ źródła światła od soczewki, którą można przedstawić za pomocą kilku parametrów, które dla danej soczewki można przyjąć jako stałe w trakcie trwania zjawiska. Wspomniane parametry geometryczne mają wpływ na $t_{E}$, tj. czas Einsteina. Wielkość $b$ jest wielkością analogiczną do parametru zderzenia i także jest stała. Czas $t_{0}$ jest momentem największego wzmocnienia, z kolei jedyną zmienną we wzorze \ref{Eq_2} jest czas {t}.
 \begin{equation}
 \centering
 u(t)=\sqrt{\left(\frac{t-t_{0}}{t_{E}}\right)^{2}+b^{2}}
 \label{Eq_2}
 \end{equation}
-\ak Znając już zależność $u(t)$ można powiązać ją ze wspomnianym wcześniej wzmocnieniem $\mu$, tj. wyprowadzić wzór \ref{Eq_3}, zwany także krzywą Paczyńskiego. Przykładową krzywą Paczyńskiego przedstawia Rysunek \ref{Fig_997}. %tutaj ref do krzywej w subsection "Projekt OGLE"
+\ak Znając już zależność $u(t)$ można powiązać ją ze wspomnianym wcześniej wzmocnieniem $\mu$, tj. wyprowadzić wzór \ref{Eq_3}, zwany także krzywą Paczyńskiego. Przykładową krzywą Paczyńskiego przedstawia Rysunek \ref{Fig_4}.
 W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia się skokiem jasności w trakcie trwania zjawiska, co było punktem wyjściowym przy konstrukcji algorytmu i zostanie opisane dokładniej w kolejnych rozdziałach.
 \begin{equation}
 \centering
@@ -90,11 +90,11 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 \section{Analiza danych}
 \subsection{Dane}
 \ak Dane na których oparty jest nasz projekt studencki pochodzą z projektu OGLE-III i zawierają 280.000 plików tekstowych w, którym znajduje się około 2400 pomiarów jasności w przeciągu 6 lat. Warto wspomnieć tutaj że jakość część pomiarów jest daleka do ideału i musieliśmy posegregować dane czy się nadają do analizy, np. w części plików były pojawiały się tylko jasności gwiazd 99,9 magnitudo co oczywiście nie sama sensu.
-\subsection{Ogólnie o programie}
+\subsection{O programie}
 \ak Do analizy danych napiliśmy program w języku Python. Dokładny kod znajduje się na platformie github \url{https://github.com/wolf3213/Projekt-Astrolensing}. Składa się on z kilku części:
 \begin{enumerate}
 \item ,,Main'', czyli cześć główna programu
-\item ,,Predictor'', czyli podprogram odpowiadający za ustalanie czy jest soczewka i obliczanie niepewnośći standardowej dla czasu $sigma_t$. Patrz: Opis algorytmu 2.4.
+\item ,,Predictor'', czyli podprogram odpowiadający za ustalanie czy jest soczewka i obliczanie niepewności standardowej dla czasu $sigma_t$. Patrz: Opis algorytmu 2.4.
 \item ,,Parser'', czyli podprogram czytający z pliku
 \item ,,Curve'', czyli podprogram odpowiedzialny za przechowanie danych, tworzenie wykresów i wstępne odrzucanie szumów.
 \end{enumerate} 
@@ -102,7 +102,7 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 \ak Właściwa część programu zaczynała się dopiero po wczytaniu danych. Wstępnie odfiltrowywał on wszystkie potencjalnie nienadające się do obróbki dane. Obejmowało to dane, które:
 \begin{enumerate}
 \item Zawierały pomiary jasności o wartości większej niż 99 magnitudo 
-\item Zostały wykonane między 1. a 2137., oraz  2450. i 2500. dniem trwania projektu OGLE. Musieliśmy je usunąć, ponieważ nie nadawały się do analizy w związku z ilością błędów jakie one gerenowały.
+\item Zostały wykonane między 1. a 2137., oraz  2450. i 2500. dniem trwania projektu OGLE. Musiały zostać usunięte, ponieważ nie nadawały się do analizy w związku z ilością błędów jakie gerenowały.
 \end{enumerate}
 
 \subsection{Opis algorytmu}
