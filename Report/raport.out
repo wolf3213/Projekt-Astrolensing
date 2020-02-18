@@ -3,7 +3,11 @@
 \BOOKMARK [2][-]{subsection.1.2}{Projekt OGLE}{section.1}% 3
 \BOOKMARK [1][-]{section.2}{Analiza danych}{}% 4
 \BOOKMARK [2][-]{subsection.2.1}{Dane}{section.2}% 5
+<<<<<<< HEAD
 \BOOKMARK [2][-]{subsection.2.2}{Struktura programu}{section.2}% 6
+=======
+\BOOKMARK [2][-]{subsection.2.2}{O programie}{section.2}% 6
+>>>>>>> 201e761216ed17db95a7e25b1d9797356a1f78d5
 \BOOKMARK [2][-]{subsection.2.3}{Odsiew szumu}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.4}{Format danych - klasa 'Curve'}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.5}{Opis algorytmu}{section.2}% 9

@@ -33,7 +33,7 @@
 \newpage
 \section{Wstęp}
 \subsection{Wstęp teoretyczny}
-\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy znajdujące się w niej. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig1}. 
+\ak Zjawisko soczewkowania grawitacyjnego wynika z zakrzywienia czasoprzestrzeni przez masy się w niej znajdujące. Konsekwencją tego jest poruszanie się promieni świetlnych po zakrzywionych torach, tj. najkrótszych możliwych, w przestrzeni Mińkowskiego. W związku z tym, w sytuacji gdy w okolicach linii łączącej źródło światła (np. galaktykę) z obserwatorem znajdzie się odpowiednio duża masa, światło biegnie omijając taką masę, co przedstawia Rysunek \ref{Fig1}. 
 
 \begin{figure}[H]
 \centering
@@ -66,13 +66,13 @@
 \label{Eq_1}
 \end{equation}
 \flushleft
-\ak Wzmocnienie można również dobrze opisać za pomocą odległości $u$ źródła światła od soczewki, którą można opisać za pomocą kilku parametrów, które dla danej soczewki można przyjąć jako stałe w trakcie trwania zjawiska. Wspomniane parametry geometryczne mają wpływ na $t_{E}$, tj. czas Einsteina. Wielkość $b$ jest wielkością analogiczną do parametru zderzenia i także jest stała. Czas $t_{0}$ jest momentem największego wzmocnienia, z kolei jedyną zmienną we wzorze \ref{Eq_2} jest czas {t}.
+\ak Wzmocnienie można również dobrze opisać za pomocą odległości $u$ źródła światła od soczewki, którą można przedstawić za pomocą kilku parametrów, które dla danej soczewki można przyjąć jako stałe w trakcie trwania zjawiska. Wspomniane parametry geometryczne mają wpływ na $t_{E}$, tj. czas Einsteina. Wielkość $b$ jest wielkością analogiczną do parametru zderzenia i także jest stała. Czas $t_{0}$ jest momentem największego wzmocnienia, z kolei jedyną zmienną we wzorze \ref{Eq_2} jest czas {t}.
 \begin{equation}
 \centering
 u(t)=\sqrt{\left(\frac{t-t_{0}}{t_{E}}\right)^{2}+b^{2}}
 \label{Eq_2}
 \end{equation}
-\ak Znając już zależność $u(t)$ można powiązać ją ze wspomnianym wcześniej wzmocnieniem $\mu$, tj. wyprowadzić wzór \ref{Eq_3}, zwany także krzywą Paczyńskiego. Przykładową krzywą Paczyńskiego przedstawia Rysunek \ref{Fig_997}. %tutaj ref do krzywej w subsection "Projekt OGLE"
+\ak Znając już zależność $u(t)$ można powiązać ją ze wspomnianym wcześniej wzmocnieniem $\mu$, tj. wyprowadzić wzór \ref{Eq_3}, zwany także krzywą Paczyńskiego. Przykładową krzywą Paczyńskiego przedstawia Rysunek \ref{Fig_4}.
 W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia się skokiem jasności w trakcie trwania zjawiska, co było punktem wyjściowym przy konstrukcji algorytmu i zostanie opisane dokładniej w kolejnych rozdziałach.
 \begin{equation}
 \centering
@@ -98,7 +98,7 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 \item ,,Parser'', czyli plik zawierający klasę służącą do parsowania plików wejściowy do obiektów na których potem operował algorytm.
 \item ,,Curve'', czyli plik zawierający klasę odpowiedzialną za przechowywanie danych, tworzenie wykresów i wstępne odrzucanie szumów.
 \end{enumerate} 
-Do analizy danych użyliśmy bibliotek:
+W programie wykorzystaliśmy następujące biblioteki:
 \begin{enumerate}
 	\item Numpy - do przechowywania pomiarów,
 	\item Matplotlib - modułu pyplot do rysowania pomiarów oraz dopasowanych krzywych,
