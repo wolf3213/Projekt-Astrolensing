@@ -102,7 +102,8 @@ W programie wykorzystaliśmy następujące biblioteki:
 \begin{enumerate}
 	\item Numpy - do przechowywania pomiarów,
 	\item Matplotlib - modułu pyplot do rysowania pomiarów oraz dopasowanych krzywych,
-	\item Scipy - funkcji curve_fit z modułu optimize, do dopasowania parametrów krzywej Paczyńskiego.
+	\item Scipy - funkcji curve\textunderscore fit z modułu optimize, do dopasowania parametrów krzywej Paczyńskiego.
+\end{enumerate}
 \subsection{Odsiew szumu}
 \ak Właściwa część programu zaczynała się dopiero po wczytaniu danych. Wstępnie odfiltrowywał on wszystkie potencjalnie nienadające się do obróbki dane. Obejmowało to dane, które:
 \begin{enumerate}
@@ -117,15 +118,15 @@ W programie wykorzystaliśmy następujące biblioteki:
 	\item mags - listę z bilbioteki numpy zawierającą wartości jasności gwiazdy,
 	\item errors - listę z biblioteki nupmy zawierającą błędy pomiarowe,
 \end{enumerate}
-		oraz kilka innych, mniej znaczących pól (np mag_mean - średnia jasność gwiazdy, mag_std - odchylenie standardowe jasności).
+		oraz kilka innych, mniej znaczących pól (np mag\textunderscore mean - średnia jasność gwiazdy, mag\textunderscore std - odchylenie standardowe jasności).
 Obiekty posiadały również kilka przydatnych funkcji, ułatwiających obróbkę danych (i nie tylko), m.in:
 \begin{enumerate}
-	\item update_data - metoda służąca do przypisania obiektowi nowych danych (np. pozbawionych szumu) oraz obliczenia jeszcze raz wartości średnich, odchyleń standardowych itp.
-	\item cut_points - metoda usuwająca pomiary z zadanych przedziałów czasowych,
+	\item update\textunderscore data - metoda służąca do przypisania obiektowi nowych danych (np. pozbawionych szumu) oraz obliczenia jeszcze raz wartości średnich, odchyleń standardowych itp.
+	\item cut\textunderscore points - metoda usuwająca pomiary z zadanych przedziałów czasowych,
 	\item plot - metoda odpowiedzialna za rysowanie wykresów krzywych,
 	\item fit - metoda obliczająca parametry najlepszego dopasowania krzywej Paczyńskiego.
 
-
+\end{enumerate}
 \subsection{Opis algorytmu}
 \ak Program, operując już na nieodrzuconych danych, oblicza dla pomiarów jasności danej gwiazdy: odchylenie standardowe  $\sigma_{mag}$ i średnią $m_0$. Następnie  sprawdza, które pomiary jasności $m$ spełniają nierówność
 
@@ -163,7 +164,7 @@ Wśród podejrzanych krzywych znajdowało się też dużo takich, których pomia
 \subsection{Znalezione soczewki}
 \ak Uruchomiliśmy program na pełnym zbiorze dostarczonych danych przy parametrach: 
 $$A=3\textrm{, } T=30$$
-\ak Według nas znaleźliśmy , przy tych parametrach 24 soczewki, 31 wykresów jasności jest do dalszej dyskusji, oraz przypadkowo 14 gwiazd zmiennych. Przykładowe wykresy jasności soczewek załączone są w podsekcji ,,Wizualizacj''. 
+\ak Według nas znaleźliśmy , przy tych parametrach 24 soczewki, 31 wykresów jasności jest do dalszej dyskusji, oraz przypadkowo 14 gwiazd zmiennych. Przykładowe wykresy jasności soczewek załączone są w podsekcji ,,Wizualizacje''. 
 \begin{subsection}{Wizualizacje}
 	\ak Wynikiem działania programu są pliki graficzne w formacie .png, które przedstawiają dopasowaną krzywą Paczyńskiego do danych w momencie wystąpienia potencjalnej soczewki. Poziome linie koloru żółtego to kolejne wielokrotności wartości $\sigma_mag$, zaś pionowa czerwona to predykcja momentu wystąpienia największego pojaśnienia, dokonana przez algorytm. Pliki zostały przez nas przejrzane i wybrane zostały z nich te, które wizualnie najbardziej odpowiadały faktycznemu wystąpieniu soczewki. Część z nich przedstawiliśmy na rysunkach poniżej.
 \begin{figure}[H]
