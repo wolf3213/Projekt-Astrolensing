@@ -12,7 +12,7 @@ if __name__ == "__main__":
          \nNumber of standard deviations to discard: {Predictor.width}")
 
     filename = "data/photBLG100.1.I.102672.dat" 
-    filename = "data/photBLG100.1.I.102672.dat"
+    filename = "zadanie1/blgXXX_X_i_16508.dat"
     #filename = "data/photBLG100.1.I.160378.dat"
     #filename = "zadanie1/blgXXX_X_i_226054.dat"
     #filename = "zadanie1/blgXXX_X_i_160378.dat"
@@ -21,13 +21,14 @@ if __name__ == "__main__":
     #filename = "zadanie1/blgXXX_X_i_173020.dat"
     #filename = "zadanie1/blgXXX_X_i_226054.dat"
 
-    directory = 'zadanie1/'
+    #directory = 'zadanie1/'
     #directory = 'data/'
+    directory = "data2009v3/"
 
     #filename = "blgXXX_X_i_1086.png"
 
-    #Tools.run_starboy_single(filename)
-    Tools.run_starboy_batch(directory, out_directory='final')
+    Tools.run_starboy_single(filename)
+    #Tools.run_starboy_batch(directory, out_directory='2009test')
 
     #for filename in os.listdir(directory):
     #    Tools.run_starboy_single(directory+filename)

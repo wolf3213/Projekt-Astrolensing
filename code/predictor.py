@@ -3,9 +3,9 @@ import numpy as np
 class Predictor:
 
     error_threshold = 0.1
-    std_threshold   = 30
+    std_threshold   = 50
     count_threshold = 5
-    width           = 3
+    width           = 2.5
 
     @staticmethod
     def starboy(curve, time_std_thr = std_threshold, count_thr = count_threshold):

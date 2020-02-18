@@ -93,13 +93,14 @@ class Tools:
         print(f"Prediction, is this a lens?: {predicted}")
         p = curve.fit()
         print(f"Fitted parameters: {p}")
-        x = np.arange(curve.times[0], curve.times[-1], 0.1)
-        pl.plot(x, Curve.paczynski(x, p[0], p[1], p[2], p[3], p[4]), color='orange', label="Fitted Paczyński's curve")
+        x = np.arange(curve.times[0], curve.times[-1], 0.1, dtype=np.float64)
+        p_v = np.array(list(p.values()))
+        pl.plot(x, Curve.paczynski(x, *p_v), color='orange', label="Fitted Paczyński's curve")
 
         curve.plot(t_mean=curve.time_mean, t_std=True, only_lens=False)
 
 
-        chi_sq = curve.fit_dif(curve.paczynski, *p, only_lens=True)
+        chi_sq = curve.fit_dif(curve.paczynski, *p_v, only_lens=True)
         print(f'Chi squared: {chi_sq}')
 
 

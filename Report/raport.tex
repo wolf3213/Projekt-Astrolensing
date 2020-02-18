@@ -89,21 +89,42 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 
 \section{Analiza danych}
 \subsection{Dane}
-\ak Dane na których oparty jest nasz projekt studencki pochodzą z projektu OGLE-III i zawierają 280.000 plików tekstowych w, którym znajduje się około 2400 pomiarów jasności w przeciągu 6 lat. Warto wspomnieć tutaj że jakość część pomiarów jest daleka do ideału i musieliśmy posegregować dane czy się nadają do analizy, np. w części plików były pojawiały się tylko jasności gwiazd 99,9 magnitudo co oczywiście nie sama sensu.
-\subsection{Ogólnie o programie}
-\ak Do analizy danych napiliśmy program w języku Python. Dokładny kod znajduje się na platformie github \url{https://github.com/wolf3213/Projekt-Astrolensing}. Składa się on z kilku części:
+\ak Dane na których oparty jest nasz projekt studencki pochodzą z projektu OGLE-III i zawierają 280.000 plików tesktowych, w których znajduje się około 2400 pomiarów jasności zebranych na przestrzeni 6-ciu lat. Każdy pomiar był reprezentowany przez linijkę tekstu, zawierał datę pomiaru, jasność gwiazdy oraz błąd pomiarowy. Warto wspomnieć, że jakość pomiarów jest daleka do ideału i musieliśmy przefiltrować dane, najpierw odrzucając błędy grube. Wśród nich były pomiary o jasności 99 mag, co nie jest fizyczne i było spowodowane najprawdopodobniej sposobem obróbki zdjęć zebranych przez sensor ccd.
+\subsection{Struktura programu}
+\ak Do analizy danych napisaliśmy program w języku Python. Dokładny kod znajduje się na platformie github \url{https://github.com/wolf3213/Projekt-Astrolensing}. Składa się on z kilku części:
 \begin{enumerate}
-\item ,,Main'', czyli cześć główna programu
-\item ,,Predictor'', czyli podprogram odpowiadający za ustalanie czy jest soczewka i obliczanie niepewnośći standardowej dla czasu $sigma_t$. Patrz: Opis algorytmu 2.4.
-\item ,,Parser'', czyli podprogram czytający z pliku
-\item ,,Curve'', czyli podprogram odpowiedzialny za przechowanie danych, tworzenie wykresów i wstępne odrzucanie szumów.
+\item ,,Main'', czyli cześć główna programu, w której podawane były nazwy katalogów, służył do uruchamiania programu.
+\item ,,Predictor'', czyli plik zawierający klasę odpowiedzialną za działanie algorytmu.
+\item ,,Parser'', czyli plik zawierający klasę służącą do parsowania plików wejściowy do obiektów na których potem operował algorytm.
+\item ,,Curve'', czyli plik zawierający klasę odpowiedzialną za przechowywanie danych, tworzenie wykresów i wstępne odrzucanie szumów.
 \end{enumerate} 
+Do analizy danych użyliśmy bibliotek:
+\begin{enumerate}
+	\item Numpy - do przechowywania pomiarów,
+	\item Matplotlib - modułu pyplot do rysowania pomiarów oraz dopasowanych krzywych,
+	\item Scipy - funkcji curve_fit z modułu optimize, do dopasowania parametrów krzywej Paczyńskiego.
 \subsection{Odsiew szumu}
 \ak Właściwa część programu zaczynała się dopiero po wczytaniu danych. Wstępnie odfiltrowywał on wszystkie potencjalnie nienadające się do obróbki dane. Obejmowało to dane, które:
 \begin{enumerate}
-\item Zawierały pomiary jasności o wartości większej niż 99 magnitudo 
-\item Zostały wykonane między 1. a 2137., oraz  2450. i 2500. dniem trwania projektu OGLE. Musieliśmy je usunąć, ponieważ nie nadawały się do analizy w związku z ilością błędów jakie one gerenowały.
+\item Zawierały pomiary jasności o wartości większej/równej 99 magnitudo 
+\item Zostały wykonane między 1. a 2137., oraz  2450. i 2500. dniem (właściwie indeksem daty) trwania projektu OGLE. Musieliśmy je usunąć, ponieważ zawierały zbyt dużą ilość błędnych pomiarów, za bardzo odstających od średniej jasności. Usunięcie kilkudziesięciu pomiarów nie wpłynęło negatywnie na analizę danych, oraz nie zmniejszyło informacji zawartych w pomiarach. 
 \end{enumerate}
+
+\subsection{Format danych - klasa 'Curve'}
+\ak Wczytane i przefiltrowane dane były przez nas przechowywane jako obiekty klasy 'Curve'. Zawierała ona pola, takie jak:
+\begin{enumerate}
+	\item times - listę z biblioteki numpy (np.array) zawierającą daty pomiarów, uporządkowaną rosnąco,
+	\item mags - listę z bilbioteki numpy zawierającą wartości jasności gwiazdy,
+	\item errors - listę z biblioteki nupmy zawierającą błędy pomiarowe,
+\end{enumerate}
+		oraz kilka innych, mniej znaczących pól (np mag_mean - średnia jasność gwiazdy, mag_std - odchylenie standardowe jasności).
+Obiekty posiadały również kilka przydatnych funkcji, ułatwiających obróbkę danych (i nie tylko), m.in:
+\begin{enumerate}
+	\item update_data - metoda służąca do przypisania obiektowi nowych danych (np. pozbawionych szumu) oraz obliczenia jeszcze raz wartości średnich, odchyleń standardowych itp.
+	\item cut_points - metoda usuwająca pomiary z zadanych przedziałów czasowych,
+	\item plot - metoda odpowiedzialna za rysowanie wykresów krzywych,
+	\item fit - metoda obliczająca parametry najlepszego dopasowania krzywej Paczyńskiego.
+
 
 \subsection{Opis algorytmu}
 \ak Program, operując już na nieodrzuconych danych, oblicza dla pomiarów jasności danej gwiazdy: odchylenie standardowe  $\sigma_{mag}$ i średnią $m_0$. Następnie  sprawdza, które pomiary jasności $m$ spełniają nierówność
@@ -112,14 +133,14 @@ W skali sześciu lat mikrosoczewka trwająca ok. $70$ dni widocznie wyróżnia s
 m<\sigma_{mag}\cdot A+m_0 
 \label{Eq_4}
 \end{equation}
-to znaczy są jaśniejsze niż średnia plus pewna wielokrotność $\sigma_{mag}$ i zlicza je, przy czym $A$ jest arbitralnie ustaloną dodatnią liczbą, wybraną przez programistę. Następnie dla punktów spełniających nierówność, liczy odchylenie standardowe po czasie $\sigma_t$, oraz średni czas $t$ tych punktów.\\
-\ak Jeżeli teraz nasz plik z danymi zawiera n pomiarów spełniających nierówność (\ref{Eq_4})  i jeżeli $\sigma_t$ jest mniejsze niż $T$, to program zwraca nam informacje o podejrzeniu że w tym pliku może być soczewka, wraz z wykresem pomiarów jasności i naniesionym czasem $t$. Czas ten informuje nas kiedy, według programu zachodzi soczewkowanie.
-\ak Zasadniczą ideą, którą się posługiwaliśmy jest fakt, że nasze soczewki będą jaśniejsze niż ,,większość'' pomiarów, przy czym dokładne znaczenie słowa ,,większość'' jest ustalone, przez wybór wartości $A$.
-\\ 
-\ak Drugim faktem, który dla nas jest kluczowy jest to informacja, że mikrosoczewki nie trwają dłużej niż 100-200 dni. A odchylenie standardowe czasu tj. $\sigma_t$ pozwoli nam określić rząd wielkości potencjalnej soczewki, co pozwoli nam odrzucić szumy.
-\\
-\subsection{Problemy}
-Algorytm przedstawiony przez nasz zespół nie był pozbawiony mankamentów. Jego głównym celem było jak najsprawniejsze przesianie danych, które z pewnością nie są soczewkami. Głównymi problemami z którymi musimy się skonfrontować są: wstępne odrzucenie danych, które są soczewkami oraz konieczność ręcznego przejrzenia plików, które program zakwalifikował jako potencjalne soczewki. Przykładową krzywą blasku, którą program zakwalifikował jako soczewkę, a która w rzeczywistości jest gwiazdą zmienną przedstawia rysunek poniżej.
+to znaczy są jaśniejsze niż średnia plus pewna wielokrotność $\sigma_{mag}$ i zlicza je, przy czym $A$ jest arbitralnie ustaloną dodatnią liczbą. Następnie dla punktów spełniających nierówność, liczy odchylenie standardowe po czasie $\sigma_t$, oraz średni czas $t$ tych punktów. \\ 
+Wartość $A$ jest skorelowana z głębokością soczewek, których szukamy. Im większa wartość $A$, tym głębsze soczewki program będzie znajdował, w drugą stronę, dla małych wartości $A$ program powinien wykryć soczewki płytkie. Niestety w rzeczywistości płytkie soczewki często nie były wykrywane, ponieważ były głębokości szumu. W rezultacie udało nam się znaleźć jedynie głębsze soczewki.  \\
+
+\ak Program determinował czy krzywa jest soczewką na podstawie wielkości $\sigma_t$. Jest to szerokość rozkładu punktów odrzuconych - spełniających nierówność 
+		(\ref{Eq_4}) wokół wyliczonej średniej, która rozumiana może być jako moment największego pojaśnienia soczewki. Ustalając górną granicę szerokości rozkładu odrzuconych punktów kierowaliśmy się założeniem, że soczewki które nas interesują, tzn te głębokie, trwają zazwyczaj bardzo krótko, często nie dłużej niż kilkadziesiąt dni. Jeśli więc algorytm wykrył, że puntky pomiarowe spełniające nierówność (\ref{Eq_4}) są położone blisko średniej ich czasu, zwracał krzywą jako podejrzaną o soczewkowanie. Aby zrozumieć dlaczego algorytm działa, trzeba uzmysłowić sobie fakt, że dla krzywej bez soczewki, punkty spełniające (\ref{Eq_4}) to pomiary zaszumione, a te są statystycznie równo rozłożone po całej krzywej. Zatem dla krzywej bez soczewki wartość $\sigma_t$ powinna być duża.
+
+\subsection{Napotkane trudności}
+Algorytm przedstawiony przez nasz zespół nie był pozbawiony mankamentów. Jego głównym celem było jak najsprawniejsze przesianie danych, które z pewnością nie są soczewkami. Głównym problemem, z którym musięliśmy się skonfrontować była konieczność ręcznego przejrzenia plików, które program zakwalifikował jako potencjalne soczewki. Przykładową krzywą blasku, którą program zakwalifikował jako soczewkę, a która w rzeczywistości jest gwiazdą zmienną przedstawia rysunek poniżej.
 \begin{figure}[H]
 \begin{subfigure}{0.5\textwidth}
 \centering
@@ -134,14 +155,17 @@ Algorytm przedstawiony przez nasz zespół nie był pozbawiony mankamentów. Jeg
 \end{subfigure}
 \caption{Gwiazda zmienna w pliku 16389 zakwalifikowana przez algorytm jako soczewka}
 \end{figure}
-\section{Testy programu}
-\ak W celu oszacowania jaki błąd pierwszego rodzaju jest generowany przez nasz program, wzięliśmy potwierdzone soczewki udostępnione na stronie OGLE, i sprawdziliśmy ile z nich zostanie wykryte przez program. Na program wykrywał 26 soczewek na 36 plików. Pliki na których przeprowadzone zostały testy zostały zapisane w folderze code/lens/ na naszym repozytorium na githubie.
+
+Wśród podejrzanych krzywych znajdowało się też dużo takich, których pomiary w określonych przedziałach czasowych były bardzo niedokładne i odbiegające od średniej. Zniwelowaliśmy ten problem wycinając część pomiarów.
+
+\section{Rezultaty}
+		\ak W celu oszacowania jaki błąd pierwszego rodzaju jest generowany przez nasz program, wzięliśmy potwierdzone soczewki udostępnione na stronie OGLE, i sprawdziliśmy ile z nich zostanie wykryte przez program. Nasz program, dla wartości $A = 3$ oraz górnej granicy $\sigma_t$ punktów spełniających (\ref{Eq_4}) wykrył 26 soczewek na 36 plików. Pliki na których przeprowadzone zostały testy zostały zapisane w folderze code/lens/ na naszym repozytorium na githubie.
 \subsection{Znalezione soczewki}
-\ak Uruchomiliśmy program na pełnych danych przy parametrach: 
-$$A=3\textrm{, } T=30 \textrm{ i } n=5$$
-\ak Według nas znaleźliśmy , przy tych parametrach 24 soczewki, 31 wykresów jasności jest do dalszej dyskusji, oraz przypadkowo 14 gwiazd zmiennych. Przykładowe wykresy jasności soczewek załączone są w podsekcji ,,Wizualizacje''. 
+\ak Uruchomiliśmy program na pełnym zbiorze dostarczonych danych przy parametrach: 
+$$A=3\textrm{, } T=30$$
+\ak Według nas znaleźliśmy , przy tych parametrach 24 soczewki, 31 wykresów jasności jest do dalszej dyskusji, oraz przypadkowo 14 gwiazd zmiennych. Przykładowe wykresy jasności soczewek załączone są w podsekcji ,,Wizualizacj''. 
 \begin{subsection}{Wizualizacje}
-\ak Wynikiem działania programu są pliki graficzne w formacie .png, które przedstawiają dopasowaną krzywą Paczyńskiego do danych w momencie wystąpienia potencjalnej soczewki. Pliki zostały przez nas przejrzane i wybrane zostały z nich te, które wizualnie najbardziej odpowiadały faktycznemu wystąpieniu soczewki. Część z nich przedstawiliśmy na rysunkach poniżej.
+	\ak Wynikiem działania programu są pliki graficzne w formacie .png, które przedstawiają dopasowaną krzywą Paczyńskiego do danych w momencie wystąpienia potencjalnej soczewki. Poziome linie koloru żółtego to kolejne wielokrotności wartości $\sigma_mag$, zaś pionowa czerwona to predykcja momentu wystąpienia największego pojaśnienia, dokonana przez algorytm. Pliki zostały przez nas przejrzane i wybrane zostały z nich te, które wizualnie najbardziej odpowiadały faktycznemu wystąpieniu soczewki. Część z nich przedstawiliśmy na rysunkach poniżej.
 \begin{figure}[H]
 \begin{subfigure}{0.5\textwidth}
 \centering

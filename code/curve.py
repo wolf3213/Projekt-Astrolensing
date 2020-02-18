@@ -60,7 +60,9 @@ class Curve:
         except RuntimeError:
             params = start_params
         #print (pcov)
-        return params
+        params_dict = {"Time":params[0], "Distance (in rE)":params[1], "Duration":abs(params[2]),
+                       "Blending":params[3], "Base mag":params[4]}
+        return params_dict
 
 
     def cut_points(self, *args):
